@@ -18,7 +18,7 @@ namespace SyllabaryQuizGenerator
         { List<QuizItem> items = new List<QuizItem>(number);
             for (int i = 0; i < number; i++)
             {
-                items.Add(new QuizItem());
+                items.Add(new QuizItem { Id = 1});
             }
             return items;
         }

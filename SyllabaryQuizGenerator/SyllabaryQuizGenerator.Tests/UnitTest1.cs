@@ -13,28 +13,32 @@ namespace SyllabaryQuizGenerator.Tests
         [TestMethod]
         public void SyllabaryGenerator_ReturnsListOfQuizItems_NotNull()
         {
-            QuizGenerator qg = new QuizGenerator();
-
             List<QuizItem> quizItems = qg.GenerateQuizItems();
-
             Assert.IsNotNull(quizItems);
         }
 
 
+        [DataRow(5)]
         [TestMethod]
-        public void SyllabaryGenerator_ReturnsListOfQuizItems_HasFiveItems()
+        public void SyllabaryGenerator_ReturnsListOfQuizItems_HasFiveItems(int numberOfItems)
         {
-            QuizGenerator qg = new QuizGenerator();
-            int n = 5;
-            List<QuizItem> quizItems = qg.GenerateQuizItems(n);
+//            int n = 5;
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
             Assert.IsNotNull(quizItems);
-            Assert.IsTrue(quizItems.Count() == n, $"Result does not have {n} items.");
+            Assert.IsTrue(quizItems.Count() == numberOfItems, $"Result does not have {numberOfItems} items.");
         }
 
         [TestMethod]
         public void SyllabaryGenerator_ReturnsListOfQuizItems_EachItemHasId()
         {
-
+            int n = 5;
+            List<QuizItem> quizItems = qg.GenerateQuizItems(n);
+            foreach(var qi in quizItems)
+            {
+                Assert.IsTrue(qi.Id > 0);
+            }
+            //CollectionAssert.That.
+            //Assert.IsNotNull(quizItems.ForEach(x=>x.Id > 0)
         }
     }
 }
