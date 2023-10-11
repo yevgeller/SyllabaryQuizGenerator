@@ -40,5 +40,12 @@ namespace SyllabaryQuizGenerator.Tests
             //CollectionAssert.That.
             //Assert.IsNotNull(quizItems.ForEach(x=>x.Id > 0)
         }
+
+        [DataRow(1000)]
+        [TestMethod]
+        public void SyllabaryGenerator_ReturnsListOfQuizItems_EachItemHasAUniqueId(int numberOfQuestions)
+        {
+
+        }
     }
 }
