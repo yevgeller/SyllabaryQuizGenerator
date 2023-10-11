@@ -1,0 +1,2 @@
+# SyllabaryQuizGenerator
+Generator for Japanese 
