@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SyllabaryQuizGenerator
 {
-    internal class QuizItem
+    public class QuizItem
     {
         public int Id { get; set; } = 0;
         public int NextQuizItemId { get; set; } = 1;
