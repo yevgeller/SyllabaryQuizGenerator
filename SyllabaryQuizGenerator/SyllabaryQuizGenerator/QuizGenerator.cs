@@ -15,8 +15,12 @@ namespace SyllabaryQuizGenerator
 
         //Generate so many quiz items
         public List<QuizItem> GenerateQuizItems(int number)
-        {
-            return new List<QuizItem>(number);
+        { List<QuizItem> items = new List<QuizItem>(number);
+            for (int i = 0; i < number; i++)
+            {
+                items.Add(new QuizItem());
+            }
+            return items;
         }
         
         //Generate so many quiz items of a kind, test all six kinds

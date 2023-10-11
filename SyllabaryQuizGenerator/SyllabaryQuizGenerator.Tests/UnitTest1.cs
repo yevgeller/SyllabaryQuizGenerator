@@ -21,7 +21,7 @@ namespace SyllabaryQuizGenerator.Tests
             int n = 5;
             List<QuizItem> quizItems = qg.GenerateQuizItems(n);
             Assert.IsNotNull(quizItems);
-            Assert.IsTrue(quizItems.Count() == n);
+            Assert.IsTrue(quizItems.Count() == n, $"Result does not have {n} items.");
         }
     }
 }
