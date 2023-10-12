@@ -72,7 +72,7 @@ namespace SyllabaryQuizGenerator.Tests
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
             foreach(var qi in quizItems)
             {
-                Assert.IsTrue(qi.NextQuizItemId >= 0, $"Invalid NextQuizItemId: {qi.NextQuizItemId}");
+                Assert.IsTrue(qi.NextQuizItemId > 0, $"Invalid NextQuizItemId: {qi.NextQuizItemId}");
             }
         }
 
