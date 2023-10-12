@@ -88,6 +88,9 @@ namespace SyllabaryQuizGenerator.Tests
         }
 
         [TestMethod]
+        [DataRow(10)]
+        [DataRow(100)]
+        [DataRow(1000)]
         [DataRow(10000)]
         public void SyllabaryGenerator_RequestQuiz_LastItemNextQuizItemIdIsZero(int numberOfItems)
         {

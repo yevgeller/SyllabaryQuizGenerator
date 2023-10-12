@@ -13,7 +13,6 @@ namespace SyllabaryQuizGenerator
             return new List<QuizItem>();
         }
 
-        //Generate so many quiz items
         public List<QuizItem> GenerateQuizItems(int number)
         {
             if (number < 1)
