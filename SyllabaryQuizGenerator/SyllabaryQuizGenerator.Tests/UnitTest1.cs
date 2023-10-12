@@ -47,7 +47,12 @@ namespace SyllabaryQuizGenerator.Tests
         public void SyllabaryGenerator_ReturnsListOfQuizItems_EachItemHasAUniqueId(int numberOfItems)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
-
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            foreach(var qi in quizItems)
+            {
+                Assert.IsFalse(dic.ContainsKey(qi.Id));
+                dic.Add(qi.Id, 1);
+            }
         }
 
         [TestMethod]
@@ -57,8 +62,7 @@ namespace SyllabaryQuizGenerator.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void SyllabaryGenerator_AskForLessThanThreeQuestions_ReceiveException(int numberOfItems)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
-            
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);            
         }
     }
 }
