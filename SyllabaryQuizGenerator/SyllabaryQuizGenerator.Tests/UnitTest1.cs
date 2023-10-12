@@ -22,30 +22,45 @@ namespace SyllabaryQuizGenerator.Tests
         [TestMethod]
         public void SyllabaryGenerator_ReturnsListOfQuizItems_HasFiveItems(int numberOfItems)
         {
-//            int n = 5;
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
             Assert.IsNotNull(quizItems);
             Assert.IsTrue(quizItems.Count() == numberOfItems, $"Result does not have {numberOfItems} items.");
         }
 
         [TestMethod]
-        public void SyllabaryGenerator_ReturnsListOfQuizItems_EachItemHasId()
+        [DataRow(5)]
+        public void SyllabaryGenerator_ReturnsListOfQuizItems_EachItemHasId(int numberOfItems)
         {
-            int n = 5;
-            List<QuizItem> quizItems = qg.GenerateQuizItems(n);
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
+
+            //List<int> ids = quizItems.Select(x=>x.Id).ToList();
+
             foreach(var qi in quizItems)
             {
-                Assert.IsTrue(qi.Id > 0);
+                Assert.IsTrue(qi.Id > 0); //TODO validate property of a collection
             }
-            //CollectionAssert.That.
-            //Assert.IsNotNull(quizItems.ForEach(x=>x.Id > 0)
+            
         }
 
         [DataRow(1000)]
         [TestMethod]
-        public void SyllabaryGenerator_ReturnsListOfQuizItems_EachItemHasAUniqueId(int numberOfQuestions)
+        public void SyllabaryGenerator_ReturnsListOfQuizItems_EachItemHasAUniqueId(int numberOfItems)
         {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
 
+        }
+
+        [TestMethod]
+        [DataRow(-1)]
+        [DataRow(0)]
+        [DataRow(-1000)]
+        [DataRow(1)]
+        [DataRow(2)]
+        [ExpectedException(typeof(ArgumentException), "Invalid currency.")]
+        public void SyllabaryGenerator_AskForLessThanThreeQuestions_ReceiveException(int numberOfItems)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
+            
         }
     }
 }
