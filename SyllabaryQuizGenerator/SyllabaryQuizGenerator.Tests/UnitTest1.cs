@@ -75,5 +75,18 @@ namespace SyllabaryQuizGenerator.Tests
                 Assert.IsTrue(qi.NextQuizItemId > 0 || qi.NextQuizItemId == -1, $"Invalid NextQuizItemId: {qi.NextQuizItemId}");
             }
         }
+
+        [TestMethod]
+        [DataRow(10000)]
+        public void SyllabaryGenerator_RequestQuiz_EachNextQuestionIdIsUnique(int numberOfItems)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            foreach (var qi in quizItems)
+            {
+                Assert.IsFalse(dic.ContainsKey(qi.NextQuizItemId), $"NextQuizItemId with Id of {qi.NextQuizItemId} already exists in the collection");
+                dic.Add(qi.NextQuizItemId, 1);
+            }
+        }
     }
 }
