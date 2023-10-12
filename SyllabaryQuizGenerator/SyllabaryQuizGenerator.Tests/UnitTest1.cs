@@ -33,13 +33,11 @@ namespace SyllabaryQuizGenerator.Tests
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
 
-            //List<int> ids = quizItems.Select(x=>x.Id).ToList();
-
-            foreach(var qi in quizItems)
+            foreach (var qi in quizItems)
             {
                 Assert.IsTrue(qi.Id > 0); //TODO validate property of a collection
             }
-            
+
         }
 
         [DataRow(1000)]
@@ -48,7 +46,7 @@ namespace SyllabaryQuizGenerator.Tests
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
             Dictionary<int, int> dic = new Dictionary<int, int>();
-            foreach(var qi in quizItems)
+            foreach (var qi in quizItems)
             {
                 Assert.IsFalse(dic.ContainsKey(qi.Id), $"QuizItem with Id of {qi.Id} already exists in the collection");
                 dic.Add(qi.Id, 1);
@@ -62,7 +60,7 @@ namespace SyllabaryQuizGenerator.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void SyllabaryGenerator_AskForLessThanThreeQuestions_ReceiveException(int numberOfItems)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);            
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
         }
 
         [TestMethod]
@@ -70,9 +68,9 @@ namespace SyllabaryQuizGenerator.Tests
         public void SyllabaryGenerator_RequestQuiz_EachItemHasNextQuestionId(int numberOfItems)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
-            foreach(var qi in quizItems)
+            foreach (var qi in quizItems)
             {
-                Assert.IsTrue(qi.NextQuizItemId > 0, $"Invalid NextQuizItemId: {qi.NextQuizItemId}");
+                Assert.IsTrue(qi.NextQuizItemId >= 0, $"Invalid NextQuizItemId: {qi.NextQuizItemId}");
             }
         }
 
@@ -87,6 +85,16 @@ namespace SyllabaryQuizGenerator.Tests
                 Assert.IsFalse(dic.ContainsKey(qi.NextQuizItemId), $"NextQuizItemId with Id of {qi.NextQuizItemId} already exists in the collection");
                 dic.Add(qi.NextQuizItemId, 1);
             }
+        }
+
+        [TestMethod]
+        [DataRow(10000)]
+        public void SyllabaryGenerator_RequestQuiz_LastItemNextQuizItemIdIsZero(int numberOfItems)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems).ToList();
+            var itemsWithNextQuizItemIdOfZero = quizItems.Where(x => x.NextQuizItemId == 0).ToList();
+            Assert.IsTrue(itemsWithNextQuizItemIdOfZero.Count() == 1); //TODO: needed? I'm already checking for unique NextQuizItemId
+            Assert.IsTrue(itemsWithNextQuizItemIdOfZero.First().Id == quizItems.Last().Id);
         }
     }
 }
