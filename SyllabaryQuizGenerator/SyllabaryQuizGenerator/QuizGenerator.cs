@@ -22,14 +22,19 @@ namespace SyllabaryQuizGenerator
             }
 
             List<QuizItem> items = new List<QuizItem>(number);
-            int thisQuestionId = 0, nextQuestionId = 0, idStepIncrement = 1;
+           
             
             for (int i = 0; i < number; i++)
             {
-                thisQuestionId = i + 1;
-                nextQuestionId = thisQuestionId + idStepIncrement;
-                items.Add(new QuizItem { Id = thisQuestionId, NextQuizItemId = nextQuestionId });
+                items.Add(new QuizItem { Id = i+1});
             }
+
+            //items.Last().NextQuizItemId = -1;
+            for (int i = items.Count() - 1; i > 0; i--)
+            {
+                items[i].NextQuizItemId = items[i - 1].Id;
+            }
+
             return items;
         }
         
