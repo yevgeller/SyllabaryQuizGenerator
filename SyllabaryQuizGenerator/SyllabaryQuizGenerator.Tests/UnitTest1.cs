@@ -50,7 +50,7 @@ namespace SyllabaryQuizGenerator.Tests
             Dictionary<int, int> dic = new Dictionary<int, int>();
             foreach(var qi in quizItems)
             {
-                Assert.IsFalse(dic.ContainsKey(qi.Id));
+                Assert.IsFalse(dic.ContainsKey(qi.Id), $"QuizItem with Id of {qi.Id} already exists in the collection");
                 dic.Add(qi.Id, 1);
             }
         }
