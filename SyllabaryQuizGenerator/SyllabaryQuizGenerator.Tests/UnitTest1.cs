@@ -64,5 +64,16 @@ namespace SyllabaryQuizGenerator.Tests
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);            
         }
+
+        [TestMethod]
+        [DataRow(10)]
+        public void SyllabaryGenerator_RequestQuiz_EachItemHasNextQuestionId(int numberOfItems)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
+            foreach(var qi in quizItems)
+            {
+                Assert.IsTrue(qi.NextQuizItemId > 0 || qi.NextQuizItemId == -1);
+            }
+        }
     }
 }
