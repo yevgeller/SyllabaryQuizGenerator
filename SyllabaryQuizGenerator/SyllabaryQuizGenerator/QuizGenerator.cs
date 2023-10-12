@@ -15,8 +15,11 @@ namespace SyllabaryQuizGenerator
 
         //Generate so many quiz items
         public List<QuizItem> GenerateQuizItems(int number)
-        { 
-            
+        {
+            if (number < 1)
+            {
+                throw new ArgumentException("Number of quiz items requested must be at least 1");
+            }
 
             List<QuizItem> items = new List<QuizItem>(number);
             for (int i = 0; i < number; i++)
