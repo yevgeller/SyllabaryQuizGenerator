@@ -99,5 +99,16 @@ namespace SyllabaryQuizGenerator.Tests
             Assert.IsTrue(itemsWithNextQuizItemIdOfZero.Count() == 1); //TODO: needed? I'm already checking for unique NextQuizItemId
             Assert.IsTrue(itemsWithNextQuizItemIdOfZero.First().Id == quizItems.Last().Id);
         }
+
+        [TestMethod]
+        [DataRow(10)]
+        public void SyllabaryGenerator_RequestQuiz_QuestionIsNotEmpty(int numberOfItems)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
+            foreach (var qi in quizItems)
+            {
+                Assert.IsFalse(string.IsNullOrEmpty(qi.Question), $"Question property is null or empty: {qi.Id}");
+            }
+        }
     }
 }
