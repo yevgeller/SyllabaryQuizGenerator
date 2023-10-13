@@ -24,7 +24,7 @@ namespace SyllabaryQuizGenerator
 
             for (int i = 0; i < number; i++)
             {
-                items.Add(new QuizItem { Id = i + 1 });
+                items.Add(new QuizItem { Id = i + 1, Question="a" });
             }
 
             for (int i = items.Count() - 1; i > 0; i--)

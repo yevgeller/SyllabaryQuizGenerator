@@ -110,5 +110,16 @@ namespace SyllabaryQuizGenerator.Tests
                 Assert.IsFalse(string.IsNullOrEmpty(qi.Question), $"Question property is null or empty: {qi.Id}");
             }
         }
+
+        [TestMethod]
+        [DataRow(10, QuizType.EnglishToKatakana)]
+        public void SyllabaryGenerator_RequestEnglishToKatakanaQuiz_QuestionIsEnglish(int numberOfItems, QuizType quizType)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
+            foreach (var qi in quizItems)
+            {
+                Assert.IsFalse(string.IsNullOrEmpty(qi.Question), $"Question property is null or empty: {qi.Id}");
+            }
+        }
     }
 }
