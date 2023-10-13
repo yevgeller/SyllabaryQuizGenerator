@@ -12,11 +12,12 @@ namespace SyllabaryQuizGenerator.Syllabary
         //string katakana = "ア イ ウ エ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ";
         //string hiragana = "  ぜ そ ぞ た だ ち ぢ っ つ づ て で と ど な に ぬ ね の は ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ ゐ ゑ を ん ゔ ゕ ゖ゛゜ゝゞゟ";
         //string katakana = "  ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ";
+        static string hiragana = "あいうえおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔ";
+        static string katakana = "アイウエオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴ";
 
         public static List<SyllabaryCharacter> GetSyllabaryCharacters()
         {
             List<SyllabaryCharacter> result = new List<SyllabaryCharacter>();
-            //result.Add(new SyllabaryCharacter { Hiragana = "", Katakana = "", Transliteration = "" });
             result.Add(new SyllabaryCharacter { Hiragana = "あ", Katakana = "ア", Transliteration = "a" });
             result.Add(new SyllabaryCharacter { Hiragana = "い", Katakana = "イ", Transliteration = "i" });
             result.Add(new SyllabaryCharacter { Hiragana = "う", Katakana = "ウ", Transliteration = "u" });
@@ -82,10 +83,6 @@ namespace SyllabaryQuizGenerator.Syllabary
             result.Add(new SyllabaryCharacter { Hiragana = "ゆ", Katakana = "ユ", Transliteration = "yu" });
             result.Add(new SyllabaryCharacter { Hiragana = "よ", Katakana = "ヨ", Transliteration = "yo" });
 
-
-            //string hiragana = "ゃ  ゅ  ょ       ゎ  ゐ ゑ   ゔ ゕ ゖ゛゜ゝゞゟ";
-            //string katakana = "ャ  ュ  ョ       ヮ  ヰ ヱ   ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ";
-
             //result.Add(new SyllabaryCharacter { Hiragana = "ら", Katakana = "ラ", Transliteration = "" });
             //result.Add(new SyllabaryCharacter { Hiragana = "り", Katakana = "リ", Transliteration = "" });
             //result.Add(new SyllabaryCharacter { Hiragana = "る", Katakana = "ル", Transliteration = "" });
@@ -98,47 +95,33 @@ namespace SyllabaryQuizGenerator.Syllabary
         }
 
         public static bool IsHiragana(string syllable)
-        { 
-            string hiragana="あいうえおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔゕゖ゛゜ゝゞゟ";
-//string katakana = "アイウエオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺ・ーヽヾヿ";
-
-            return hiragana.IndexOf(syllable) >= 0;
-            //string hiragana = "あ い う え お か が き ぎ く ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た だ ち ぢ っ つ づ て で と ど な に ぬ ね の は ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ ゐ ゑ を ん ゔ ゕ ゖ゛゜ゝゞゟ";
-            //string katakana = "ア イ ウ エ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ";
-
+        {
+            return hiragana.IndexOf(syllable) >= 0; //TODO: switch to numbers something 
         }
 
         public static bool IsKatakana(string syllable)
         {
-string katakana = "アイウエオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺ・ーヽヾヿ";
-
             return katakana.IndexOf(syllable) >= 0;
         }
 
         //public static List<string> AllKatakanaCharacters()
         //{
         //    var syllabary = Syllabary.GetSyllabaryCharacters();
-
         //    var result = syllabary.Select(x => x.Katakana).ToList();
-
         //    return result;
         //}
 
         //public static List<string> AllHiraganaCharacters()
         //{
         //    var syllabary = Syllabary.GetSyllabaryCharacters();
-
         //    var result = syllabary.Select(x => x.Hiragana).ToList();
-
         //    return result;
         //}
 
         //public static List<string> AllTransliterationCharacters()
         //{
         //    var syllabary = Syllabary.GetSyllabaryCharacters();
-
         //    var result = syllabary.Select(x => x.Transliteration).ToList();
-
         //    return result;
         //}
     }
