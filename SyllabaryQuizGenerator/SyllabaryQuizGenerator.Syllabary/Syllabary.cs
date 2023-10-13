@@ -14,7 +14,7 @@ namespace SyllabaryQuizGenerator.Syllabary
         //string katakana = "  ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ";
         static string hiragana = "あいうえおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔ";
         static string katakana = "アイウエオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴ";
-
+        static string translit = "aiueokagakigikugukegekogosazashijisuzusezesozotadachijitsuzutedetodonaninunenohabapahibipifubupuhebepehobopomamimumemoyayuyo";
         public static List<SyllabaryCharacter> GetSyllabaryCharacters()
         {
             List<SyllabaryCharacter> result = new List<SyllabaryCharacter>
@@ -104,6 +104,11 @@ namespace SyllabaryQuizGenerator.Syllabary
         public static bool IsKatakana(string syllable)
         {
             return katakana.IndexOf(syllable) >= 0;
+        }
+
+        public static bool IsTransliteration(string syllable)
+        {
+            return translit.IndexOf(syllable) >= 0;
         }
 
         //public static List<string> AllKatakanaCharacters()

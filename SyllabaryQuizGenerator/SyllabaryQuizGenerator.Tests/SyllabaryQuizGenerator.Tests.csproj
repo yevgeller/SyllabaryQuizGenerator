@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SyllabaryQuizGenerator.Syllabary\SyllabaryQuizGenerator.Syllabary.csproj" />
     <ProjectReference Include="..\SyllabaryQuizGenerator\SyllabaryQuizGenerator.csproj" />
   </ItemGroup>
 

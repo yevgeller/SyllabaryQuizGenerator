@@ -24,7 +24,7 @@ namespace SyllabaryQuizGenerator
 
             for (int i = 0; i < number; i++)
             {
-                items.Add(new QuizItem { Id = i + 1, Question="a" });
+                items.Add(new QuizItem { Id = i + 1, Question="?" });
             }
 
             for (int i = items.Count() - 1; i > 0; i--)
@@ -36,7 +36,12 @@ namespace SyllabaryQuizGenerator
 
             return items;
         }
-
         //Generate so many quiz items of a kind, test all six kinds
+        public List<QuizItem> GenerateQuizItems(int number, QuizType quizType)
+        {
+            var result = this.GenerateQuizItems(number);
+
+            return result;
+        }
     }
 }

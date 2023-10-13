@@ -115,10 +115,10 @@ namespace SyllabaryQuizGenerator.Tests
         [DataRow(10, QuizType.EnglishToKatakana)]
         public void SyllabaryGenerator_RequestEnglishToKatakanaQuiz_QuestionIsEnglish(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
-                Assert.IsFalse(string.IsNullOrEmpty(qi.Question), $"Question property is null or empty: {qi.Id}");
+                Assert.IsTrue(Syllabary.Syllabary.IsTransliteration(qi.Question), $"Expected Question in English, but received {qi.Question}: Question Id: {qi.Id}");
             }
         }
     }
