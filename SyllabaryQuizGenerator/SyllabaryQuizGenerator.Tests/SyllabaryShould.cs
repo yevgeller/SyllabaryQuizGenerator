@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SyllabaryQuizGenerator.Tests
+﻿namespace SyllabaryQuizGenerator.Tests
 {
     [TestClass]
     public class SyllabaryShould
     {
         char[] katakanaSyllables, hiraganaSyllables;
         List<string> translit;
-        [TestInitialize] public void Initialize()
+        [TestInitialize]
+        public void Initialize()
         {
             katakanaSyllables = "アイウエオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴ".ToCharArray();
             hiraganaSyllables = "あいうえおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔ".ToCharArray();
@@ -22,7 +17,7 @@ namespace SyllabaryQuizGenerator.Tests
         [TestMethod]
         public void Check_IsKatakana()
         {
-            foreach(char k in katakanaSyllables)
+            foreach (char k in katakanaSyllables)
             {
                 Assert.IsTrue(Syllabary.Syllabary.IsKatakana(k.ToString()));
             }
@@ -40,9 +35,29 @@ namespace SyllabaryQuizGenerator.Tests
         [TestMethod]
         public void Check_IsTransliteration()
         {
-            foreach(var s in translit)
+            foreach (var s in translit)
             {
                 Assert.IsTrue(Syllabary.Syllabary.IsTransliteration(s));
+            }
+        }
+
+        [TestMethod]
+        public void Check_NotIsHiragana()
+        {
+            foreach (char h in hiraganaSyllables)
+            {
+                Assert.IsFalse(Syllabary.Syllabary.IsKatakana(h.ToString()));
+                Assert.IsFalse(Syllabary.Syllabary.IsTransliteration(h.ToString()));
+            }
+        }
+
+        [TestMethod]
+        public void Check_NotIsKatakana()
+        {
+            foreach (char k in katakanaSyllables)
+            {
+                Assert.IsFalse(Syllabary.Syllabary.IsHiragana(k.ToString()));
+                Assert.IsFalse(Syllabary.Syllabary.IsTransliteration(k.ToString()));
             }
         }
     }
