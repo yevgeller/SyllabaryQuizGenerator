@@ -5,22 +5,26 @@ namespace SyllabaryQuizGenerator.Tests
     {
         QuizGenerator qg;
         [TestInitialize]
-        public void SetUpQuizGenerator()
+        public void Setup()
         {
             qg = new QuizGenerator();
         }
 
         [TestMethod]
-        public void SyllabaryGenerator_ReturnsListOfQuizItems_NotNull()
+        public void ReturnListOfQuizItems_NotNull()
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems();
             Assert.IsNotNull(quizItems);
         }
 
 
+        [DataRow(3)]
         [DataRow(5)]
+        [DataRow(500)]
+        [DataRow(50000)]
+        [DataRow(1000000)]
         [TestMethod]
-        public void SyllabaryGenerator_ReturnsListOfQuizItems_HasFiveItems(int numberOfItems)
+        public void ReturnListOfQuizItems_HasRequestedNumberOfItems(int numberOfItems)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
             Assert.IsNotNull(quizItems);
@@ -29,7 +33,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(5)]
-        public void SyllabaryGenerator_ReturnsListOfQuizItems_EachItemHasId(int numberOfItems)
+        public void ReturnListOfQuizItems_EachItemHasId(int numberOfItems)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
 
@@ -42,7 +46,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [DataRow(1000)]
         [TestMethod]
-        public void SyllabaryGenerator_ReturnsListOfQuizItems_EachItemHasAUniqueId(int numberOfItems)
+        public void GenerateListOfQuizItems_EachItemHasAUniqueId(int numberOfItems)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
             Dictionary<int, int> dic = new Dictionary<int, int>();
@@ -58,14 +62,14 @@ namespace SyllabaryQuizGenerator.Tests
         [DataRow(0)]
         [DataRow(-1000)]
         [ExpectedException(typeof(ArgumentException))]
-        public void SyllabaryGenerator_AskForLessThanThreeQuestions_ReceiveException(int numberOfItems)
+        public void AskToGenerateLessThanThreeQuestions_ReceiveException(int numberOfItems)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
         }
 
         [TestMethod]
         [DataRow(10)]
-        public void SyllabaryGenerator_RequestQuiz_EachItemHasNextQuestionId(int numberOfItems)
+        public void GenerateQuiz_EachItemHasNextQuestionId(int numberOfItems)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
             foreach (var qi in quizItems)
@@ -76,7 +80,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10000)]
-        public void SyllabaryGenerator_RequestQuiz_EachNextQuestionIdIsUnique(int numberOfItems)
+        public void GenerateQuiz_EachNextQuestionIdIsUnique(int numberOfItems)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
             Dictionary<int, int> dic = new Dictionary<int, int>();
@@ -92,7 +96,7 @@ namespace SyllabaryQuizGenerator.Tests
         [DataRow(100)]
         [DataRow(1000)]
         [DataRow(10000)]
-        public void SyllabaryGenerator_RequestQuiz_LastItemNextQuizItemIdIsZero(int numberOfItems)
+        public void GenerateQuiz_LastItemNextQuizItemIdIsZero(int numberOfItems)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems).ToList();
             var itemsWithNextQuizItemIdOfZero = quizItems.Where(x => x.NextQuizItemId == 0).ToList();
@@ -102,7 +106,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10)]
-        public void SyllabaryGenerator_RequestQuiz_QuestionIsNotEmpty(int numberOfItems)
+        public void GenerateQuiz_QuestionIsNotEmpty(int numberOfItems)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
             foreach (var qi in quizItems)
@@ -113,7 +117,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10, QuizType.EnglishToKatakana)]
-        public void SyllabaryGenerator_RequestEnglishToKatakanaQuiz_QuestionIsEnglish(int numberOfItems, QuizType quizType)
+        public void GenerateEnglishToKatakanaQuiz_QuestionIsEnglish(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
