@@ -13,7 +13,7 @@ namespace SyllabaryQuizGenerator
             return new List<QuizItem>();
         }
 
-        public List<QuizItem> GenerateQuizItems(int number)
+        public List<QuizItem> GenerateQuizItems(int number, QuizType quizType = QuizType.EnglishToKatakana)
         {
             if (number < 1)
             {
@@ -37,11 +37,11 @@ namespace SyllabaryQuizGenerator
             return items;
         }
         //Generate so many quiz items of a kind, test all six kinds
-        public List<QuizItem> GenerateQuizItems(int number, QuizType quizType)
-        {
-            var result = this.GenerateQuizItems(number);
+        //public List<QuizItem> GenerateQuizItems(int number, QuizType quizType)
+        //{
+        //    var result = this.GenerateQuizItems(number);
 
-            return result;
-        }
+        //    return result;
+        //}
     }
 }
