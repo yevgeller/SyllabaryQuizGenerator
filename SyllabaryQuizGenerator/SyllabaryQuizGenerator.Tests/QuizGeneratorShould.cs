@@ -1,7 +1,7 @@
 namespace SyllabaryQuizGenerator.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class QuizGeneratorShould
     {
         QuizGenerator qg;
         [TestInitialize]
