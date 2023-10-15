@@ -23,9 +23,25 @@ namespace SyllabaryQuizGenerator
 
             List<QuizItem> items = InitializeQuizWithSoManyQuestions(number);
 
-            items = AssignNextQuestionId(items);           
+            items = AssignNextQuestionId(items);
+
+            items = AssignQuestions(items, quizType);
 
             return items;
+        }
+
+        private List<QuizItem> AssignQuestions(List<QuizItem> items, QuizType quizType)
+        {
+            if(quizType == QuizType.EnglishToKatakana)
+            {
+                return AssignEnglishToKatakanaQuestions(items);
+            }
+            return items;
+        }
+
+        private List<QuizItem> AssignEnglishToKatakanaQuestions(List<QuizItem> items)
+        {
+            throw new NotImplementedException();
         }
 
         private List<QuizItem> InitializeQuizWithSoManyQuestions(int numberOfQuestions)
