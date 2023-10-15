@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SyllabaryQuizGenerator.Syllabary\SyllabaryQuizGenerator.Syllabary.csproj" />
+  </ItemGroup>
+
 </Project>

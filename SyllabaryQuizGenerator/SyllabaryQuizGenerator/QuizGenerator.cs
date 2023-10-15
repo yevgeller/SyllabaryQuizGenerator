@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SyllabaryQuizGenerator.Syllabary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,7 +42,18 @@ namespace SyllabaryQuizGenerator
 
         private List<QuizItem> AssignEnglishToKatakanaQuestions(List<QuizItem> items)
         {
-            throw new NotImplementedException();
+            Random rnd = new Random();
+
+            var allChars = Syllabary.Syllabary.GetSyllabaryCharacters();
+
+            SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
+
+            foreach(var i in items)
+            {
+                i.Question = ch.Transliteration;
+            }
+
+            return items;
         }
 
         private List<QuizItem> InitializeQuizWithSoManyQuestions(int numberOfQuestions)
