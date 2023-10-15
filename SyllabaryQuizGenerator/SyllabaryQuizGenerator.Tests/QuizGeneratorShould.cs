@@ -125,5 +125,25 @@ namespace SyllabaryQuizGenerator.Tests
                 Assert.IsTrue(Syllabary.Syllabary.IsTransliteration(qi.Question), $"Expected Question in English, but received {qi.Question}: Question Id: {qi.Id}");
             }
         }
+
+        [TestMethod]
+        [DataRow(10, QuizType.EnglishToKatakana)]
+        [DataRow(100, QuizType.EnglishToKatakana)]
+        [DataRow(1000, QuizType.EnglishToKatakana)]
+        [DataRow(10000, QuizType.EnglishToKatakana)]
+        public void GenerateEnglishToKatakanaQuiz_QuestionsAreRandom(int numberOfItems, QuizType quizType)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+            foreach (var qi in quizItems)
+            {
+                if (dic.ContainsKey(qi.Question))
+                    dic[qi.Question]++;
+                else
+                    dic.Add(qi.Question, 1);
+            }
+            Assert.IsTrue(dic.Count() > numberOfItems * 0.7, $"Number of random questions is {dic.Count()} for {numberOfItems} questions requested");
+        }
+
     }
 }
