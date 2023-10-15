@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SyllabaryQuizGenerator
 {
@@ -20,12 +21,7 @@ namespace SyllabaryQuizGenerator
                 throw new ArgumentException("Number of quiz items requested must be at least 1");
             }
 
-            List<QuizItem> items = new List<QuizItem>(number);
-
-            for (int i = 0; i < number; i++)
-            {
-                items.Add(new QuizItem { Id = i + 1, Question="?" });
-            }
+            List<QuizItem> items = InitializeQuizWithSoManyQuestions(number);
 
             for (int i = items.Count() - 1; i > 0; i--)
             {
@@ -33,6 +29,18 @@ namespace SyllabaryQuizGenerator
             }
 
             items[0].NextQuizItemId = items[1].Id;
+
+            return items;
+        }
+
+        private List<QuizItem> InitializeQuizWithSoManyQuestions(int numberOfQuestions)
+        {
+            List<QuizItem> items = new List<QuizItem>(numberOfQuestions);
+
+            for (int i = 0; i < numberOfQuestions; i++)
+            {
+                items.Add(new QuizItem { Id = i + 1, Question = "?" });
+            }
 
             return items;
         }
