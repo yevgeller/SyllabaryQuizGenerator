@@ -23,12 +23,7 @@ namespace SyllabaryQuizGenerator
 
             List<QuizItem> items = InitializeQuizWithSoManyQuestions(number);
 
-            for (int i = items.Count() - 1; i > 0; i--)
-            {
-                items[i - 1].NextQuizItemId = items[i].Id;
-            }
-
-            items[0].NextQuizItemId = items[1].Id;
+            items = AssignNextQuestionId(items);           
 
             return items;
         }
@@ -41,6 +36,18 @@ namespace SyllabaryQuizGenerator
             {
                 items.Add(new QuizItem { Id = i + 1, Question = "?" });
             }
+
+            return items;
+        }
+
+        private List<QuizItem> AssignNextQuestionId(List<QuizItem> items)
+        {
+            for (int i = items.Count() - 1; i > 0; i--)
+            {
+                items[i - 1].NextQuizItemId = items[i].Id;
+            }
+
+            items[0].NextQuizItemId = items[1].Id;
 
             return items;
         }
