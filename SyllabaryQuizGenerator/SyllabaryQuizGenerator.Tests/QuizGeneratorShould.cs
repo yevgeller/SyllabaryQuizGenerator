@@ -164,5 +164,16 @@ namespace SyllabaryQuizGenerator.Tests
 
             Assert.IsTrue(dic.Count() > 35, $"Number of random questions is {dic.Count()} for {numberOfItems} questions requested");
         }
+
+        [TestMethod]
+        [DataRow(10)]
+        public void GenerateEnglishToKatakanaQuiz_CorrectAnswerIsNotEmpty(int numberOfItems)
+        {
+            var test = qg.GenerateQuizItems(numberOfItems);
+            foreach(var q in test)
+            {
+                Assert.IsFalse(string.IsNullOrEmpty(q.CorrectAnswer), $"Correct answer is missing: {q.Id}, {q.Question} ");
+            }
+        }
     }
 }
