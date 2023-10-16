@@ -186,7 +186,7 @@ namespace SyllabaryQuizGenerator.Tests
         }
 
         [TestMethod]
-        [DataRow(10)]
+        [DataRow(10000)]
         public void GenerateEnglishToKatakanaQuiz_CorrectAnswerIsCorrectKatakana(int numberOfItems)
         {
             var test = qg.GenerateQuizItems(numberOfItems);
