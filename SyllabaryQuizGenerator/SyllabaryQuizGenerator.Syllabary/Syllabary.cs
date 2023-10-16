@@ -114,9 +114,8 @@ namespace SyllabaryQuizGenerator.Syllabary
 
         public static SyllabaryCharacter FindBySomething(string what)
         {
-            SyllabaryCharacter ch = GetSyllabaryCharacters()
-                .Where(x=>x.Katakana == what || x.Hiragana == what || x.Transliteration == what).FirstOrDefault();
-            return ch;
+            return GetSyllabaryCharacters()
+                .Where(x => x.Katakana == what || x.Hiragana == what || x.Transliteration == what).FirstOrDefault();
         }
 
         //public static List<string> AllKatakanaCharacters()
