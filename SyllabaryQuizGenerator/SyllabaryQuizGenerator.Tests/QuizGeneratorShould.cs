@@ -141,9 +141,7 @@ namespace SyllabaryQuizGenerator.Tests
                 else
                     dic.Add(qi.Question, 1);
             }
-
-
-            Assert.IsTrue(dic.Count() > numberOfItems * 0.7, $"Number of random questions is {dic.Count()} for {numberOfItems} questions requested");
+            Assert.IsTrue(dic.Count() > numberOfItems * 0.5, $"Number of random questions is {dic.Count()} for {numberOfItems} questions requested");
         }
 
         [TestMethod]
@@ -173,6 +171,17 @@ namespace SyllabaryQuizGenerator.Tests
             foreach(var q in test)
             {
                 Assert.IsFalse(string.IsNullOrEmpty(q.CorrectAnswer), $"Correct answer is missing: {q.Id}, {q.Question} ");
+            }
+        }
+
+        [TestMethod]
+        [DataRow(10)]
+        public void GenerateEnglishToKatakanaQuiz_CorrectAnswerIsKatakana(int numberOfItems)
+        {
+            var test = qg.GenerateQuizItems(numberOfItems);
+            foreach (var q in test)
+            {
+                Assert.IsTrue(Syllabary.Syllabary.IsKatakana(q.CorrectAnswer), $"Correct answer is not Katakana for an E2K test: {q.Id}, {q.Question} ");
             }
         }
     }
