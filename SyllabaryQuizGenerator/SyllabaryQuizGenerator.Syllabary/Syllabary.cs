@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -109,6 +110,13 @@ namespace SyllabaryQuizGenerator.Syllabary
         public static bool IsTransliteration(string syllable)
         {
             return translit.Where(x=>x == syllable).Any();
+        }
+
+        public static SyllabaryCharacter FindBySomething(string what)
+        {
+            SyllabaryCharacter ch = GetSyllabaryCharacters()
+                .Where(x=>x.Katakana == what || x.Hiragana == what || x.Transliteration == what).FirstOrDefault();
+            return ch;
         }
 
         //public static List<string> AllKatakanaCharacters()

@@ -184,5 +184,16 @@ namespace SyllabaryQuizGenerator.Tests
                 Assert.IsTrue(Syllabary.Syllabary.IsKatakana(q.CorrectAnswer), $"Correct answer is not Katakana for an E2K test: {q.Id}, {q.Question} ");
             }
         }
+
+        [TestMethod]
+        [DataRow(10)]
+        public void GenerateEnglishToKatakanaQuiz_CorrectAnswerIsCorrectKatakana(int numberOfItems)
+        {
+            var test = qg.GenerateQuizItems(numberOfItems);
+            foreach (var q in test)
+            {
+                Assert.IsTrue(Syllabary.Syllabary.IsKatakana(q.CorrectAnswer), $"Correct answer is not Katakana for an E2K test: {q.Id}, {q.Question} ");
+            }
+        }
     }
 }

@@ -50,7 +50,7 @@ namespace SyllabaryQuizGenerator
             {
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
                 i.Question = ch.Transliteration;
-                i.CorrectAnswer = "a";
+                i.CorrectAnswer = "ス";
             }
 
             return items;
