@@ -44,12 +44,11 @@ namespace SyllabaryQuizGenerator
         {
             Random rnd = new Random();
 
-            var allChars = Syllabary.Syllabary.GetSyllabaryCharacters();
-
-            SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
+            var allChars = Syllabary.Syllabary.GetSyllabaryCharacters();            
 
             foreach(var i in items)
             {
+                SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
                 i.Question = ch.Transliteration;
             }
 

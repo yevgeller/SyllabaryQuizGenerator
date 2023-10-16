@@ -127,13 +127,12 @@ namespace SyllabaryQuizGenerator.Tests
         }
 
         [TestMethod]
-        [DataRow(10, QuizType.EnglishToKatakana)]
-        [DataRow(100, QuizType.EnglishToKatakana)]
-        [DataRow(1000, QuizType.EnglishToKatakana)]
-        [DataRow(10000, QuizType.EnglishToKatakana)]
-        public void GenerateEnglishToKatakanaQuiz_QuestionsAreRandom(int numberOfItems, QuizType quizType)
+        [DataRow(10)]
+        [DataRow(30)]
+        [DataRow(40)]
+        public void GenerateEnglishToKatakanaQuiz_QuestionsAreRandomForSmallTestQuantities(int numberOfItems)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
             Dictionary<string, int> dic = new Dictionary<string, int>();
             foreach (var qi in quizItems)
             {
@@ -142,8 +141,28 @@ namespace SyllabaryQuizGenerator.Tests
                 else
                     dic.Add(qi.Question, 1);
             }
+
+
             Assert.IsTrue(dic.Count() > numberOfItems * 0.7, $"Number of random questions is {dic.Count()} for {numberOfItems} questions requested");
         }
 
+        [TestMethod]
+        [DataRow(100)]
+        [DataRow(1000)]
+        [DataRow(10000)]
+        public void GenerateEnglishToKatakanaQuiz_QuestionsAreRandomForLargeTestQuantities(int numberOfItems)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+            foreach (var qi in quizItems)
+            {
+                if (dic.ContainsKey(qi.Question))
+                    dic[qi.Question]++;
+                else
+                    dic.Add(qi.Question, 1);
+            }
+
+            Assert.IsTrue(dic.Count() > 35, $"Number of random questions is {dic.Count()} for {numberOfItems} questions requested");
+        }
     }
 }
