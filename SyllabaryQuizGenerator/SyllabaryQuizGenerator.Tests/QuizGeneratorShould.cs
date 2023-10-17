@@ -223,5 +223,17 @@ namespace SyllabaryQuizGenerator.Tests
                 Assert.AreEqual(possibleAnswersQty, q.Answers.Count(), $" {q.Answers.Count()} possible answers instead of {possibleAnswersQty} for {q.Id}, {q.Question}");
             }
         }
+
+        [TestMethod]
+        [DataRow(10, QuizType.EnglishToKatakana, -100)]
+        [DataRow(10, QuizType.EnglishToKatakana, 0)]
+        [DataRow(10, QuizType.EnglishToKatakana, 1)]
+        [DataRow(10, QuizType.EnglishToKatakana, 7)]
+        [DataRow(10, QuizType.EnglishToKatakana, 100)]
+        [ExpectedException(typeof(ArgumentException))]
+        public void AskToGenerateInappropriateNumberOfPossibleAnswers_ReceiveException(int numberOfItems, QuizType quizType, int numberOfPossibleAnswers)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType, numberOfPossibleAnswers);
+        }
     }
 }
