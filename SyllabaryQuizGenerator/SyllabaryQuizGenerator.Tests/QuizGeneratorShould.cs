@@ -237,32 +237,32 @@ namespace SyllabaryQuizGenerator.Tests
         }
 
         [TestMethod]
-        [DataRow(10, QuizType.EnglishToKatakana, 2)]
-        [DataRow(10, QuizType.EnglishToKatakana, 3)]
-        [DataRow(10, QuizType.EnglishToKatakana, 4)]
-        [DataRow(10, QuizType.EnglishToKatakana, 5)]
-        [DataRow(10, QuizType.EnglishToKatakana, 6)]
+        [DataRow(50, QuizType.EnglishToKatakana, 2)]
+        [DataRow(50, QuizType.EnglishToKatakana, 3)]
+        [DataRow(50, QuizType.EnglishToKatakana, 4)]
+        [DataRow(50, QuizType.EnglishToKatakana, 5)]
+        [DataRow(50, QuizType.EnglishToKatakana, 6)]
         public void GenerateEnglishToKatakanaQuiz_CorrectAnswerInRandomPosition(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, QuizType.EnglishToKatakana, possibleAnswersQty);
-            Assert.IsTrue(true);
-            //foreach (var q in test)
-            //{
-            //    Dictionary<int, int> dic = new Dictionary<int, int>();
-            //    for (int i = 0; i < possibleAnswersQty; i++)
-            //    {
-            //        dic.Add(i, 0);
-            //    }
-            //    for (int i = 0; i < q.Answers.Count(); i++)
-            //    {
-            //        if (q.Answers[i] == q.CorrectAnswer)
-            //        {
-            //            dic[i]++;
-            //        }
-            //    }
-            //    Assert.AreEqual(dic.Keys.Count, possibleAnswersQty, "")
-            //    Assert.AreEqual(possibleAnswersQty, q.Answers.Count(), $" {q.Answers.Count()} possible answers instead of {possibleAnswersQty} for {q.Id}, {q.Question}");
-            //}
+            
+            foreach (var q in test)
+            {
+                Dictionary<int, int> dic = new Dictionary<int, int>();
+                for (int i = 0; i < possibleAnswersQty; i++)
+                {
+                    dic.Add(i, 0);
+                }
+                for (int i = 0; i < q.Answers.Count(); i++)
+                {
+                    if (q.Answers[i] == q.CorrectAnswer)
+                    {
+                        dic[i]++;
+                    }
+                }
+                Assert.AreEqual(dic.Keys.Count, possibleAnswersQty, "")
+                //Assert.AreEqual(possibleAnswersQty, q.Answers.Count(), $" {q.Answers.Count()} possible answers instead of {possibleAnswersQty} for {q.Id}, {q.Question}");
+            }
         }
     }
 }
