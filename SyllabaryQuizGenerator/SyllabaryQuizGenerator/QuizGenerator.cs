@@ -15,7 +15,7 @@ namespace SyllabaryQuizGenerator
             return new List<QuizItem>();
         }
 
-        public List<QuizItem> GenerateQuizItems(int number, QuizType quizType = QuizType.EnglishToKatakana)
+        public List<QuizItem> GenerateQuizItems(int number, QuizType quizType = QuizType.EnglishToKatakana, int numberOfVariants = 4)
         {
             if (number < 1)
             {
@@ -26,12 +26,12 @@ namespace SyllabaryQuizGenerator
 
             items = AssignNextQuestionId(items);
 
-            items = AssignQuestions(items, quizType);
+            items = AssignQuestions(items, quizType, numberOfVariants);
 
             return items;
         }
 
-        private List<QuizItem> AssignQuestions(List<QuizItem> items, QuizType quizType)
+        private List<QuizItem> AssignQuestions(List<QuizItem> items, QuizType quizType, int numberOfVariants)
         {
             if(quizType == QuizType.EnglishToKatakana)
             {
