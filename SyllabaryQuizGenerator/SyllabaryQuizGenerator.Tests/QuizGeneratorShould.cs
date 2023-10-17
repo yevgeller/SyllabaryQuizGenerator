@@ -207,5 +207,21 @@ namespace SyllabaryQuizGenerator.Tests
                 Assert.AreEqual(1, numberCorrect, $" {numberCorrect} correct answers instead of 1 for {q.Id}, {q.Question}");
             }
         }
+
+        [TestMethod]
+        [DataRow(10000, QuizType.EnglishToKatakana, 2)]
+        [DataRow(10000, QuizType.EnglishToKatakana, 3)]
+        [DataRow(10000, QuizType.EnglishToKatakana, 4)]
+        [DataRow(10000, QuizType.EnglishToKatakana, 5)]
+        [DataRow(10000, QuizType.EnglishToKatakana, 6)]
+        public void GenerateEnglishToKatakanaQuiz_CanAdjustTheNumberOfPossibleAnswers(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        {
+            var test = qg.GenerateQuizItems(numberOfItems, QuizType.EnglishToKatakana, possibleAnswersQty);
+            
+            foreach (var q in test)
+            {
+                Assert.AreEqual(possibleAnswersQty, q.Answers.Count(), $" {q.Answers.Count()} possible answers instead of {possibleAnswersQty} for {q.Id}, {q.Question}");
+            }
+        }
     }
 }
