@@ -204,7 +204,7 @@ namespace SyllabaryQuizGenerator.Tests
             foreach (var q in test)
             {
                 var numberCorrect = q.Answers.Where(x => x == q.CorrectAnswer).Count();
-                Assert.AreEqual(numberCorrect, 1, $" {numberCorrect} correct answers instead of 1 for {q.Id}, {q.Question}");
+                Assert.AreEqual(1, numberCorrect, $" {numberCorrect} correct answers instead of 1 for {q.Id}, {q.Question}");
             }
         }
     }
