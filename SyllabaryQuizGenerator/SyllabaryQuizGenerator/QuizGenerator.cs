@@ -22,6 +22,10 @@ namespace SyllabaryQuizGenerator
                 throw new ArgumentException("Number of quiz items requested must be at least 1");
             }
 
+            if(numberOfPossibleAnswers < 2 || numberOfPossibleAnswers > 6) {
+                throw new ArgumentException("Number of possible answers needs to be between 2 and 6");
+            }
+
             List<QuizItem> items = InitializeQuizWithSoManyQuestions(number);
 
             items = AssignNextQuestionId(items);
