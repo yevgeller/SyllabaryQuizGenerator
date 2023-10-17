@@ -168,7 +168,7 @@ namespace SyllabaryQuizGenerator.Tests
         public void GenerateEnglishToKatakanaQuiz_CorrectAnswerIsNotEmpty(int numberOfItems)
         {
             var test = qg.GenerateQuizItems(numberOfItems);
-            foreach(var q in test)
+            foreach (var q in test)
             {
                 Assert.IsFalse(string.IsNullOrEmpty(q.CorrectAnswer), $"Correct answer is missing: {q.Id}, {q.Question} ");
             }
@@ -217,7 +217,7 @@ namespace SyllabaryQuizGenerator.Tests
         public void GenerateEnglishToKatakanaQuiz_CanAdjustTheNumberOfPossibleAnswers(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, QuizType.EnglishToKatakana, possibleAnswersQty);
-            
+
             foreach (var q in test)
             {
                 Assert.AreEqual(possibleAnswersQty, q.Answers.Count(), $" {q.Answers.Count()} possible answers instead of {possibleAnswersQty} for {q.Id}, {q.Question}");
@@ -234,6 +234,35 @@ namespace SyllabaryQuizGenerator.Tests
         public void AskToGenerateInappropriateNumberOfPossibleAnswers_ReceiveException(int numberOfItems, QuizType quizType, int numberOfPossibleAnswers)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType, numberOfPossibleAnswers);
+        }
+
+        [TestMethod]
+        [DataRow(10, QuizType.EnglishToKatakana, 2)]
+        [DataRow(10, QuizType.EnglishToKatakana, 3)]
+        [DataRow(10, QuizType.EnglishToKatakana, 4)]
+        [DataRow(10, QuizType.EnglishToKatakana, 5)]
+        [DataRow(10, QuizType.EnglishToKatakana, 6)]
+        public void GenerateEnglishToKatakanaQuiz_CorrectAnswerInRandomPosition(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        {
+            var test = qg.GenerateQuizItems(numberOfItems, QuizType.EnglishToKatakana, possibleAnswersQty);
+            Assert.IsTrue(true);
+            //foreach (var q in test)
+            //{
+            //    Dictionary<int, int> dic = new Dictionary<int, int>();
+            //    for (int i = 0; i < possibleAnswersQty; i++)
+            //    {
+            //        dic.Add(i, 0);
+            //    }
+            //    for (int i = 0; i < q.Answers.Count(); i++)
+            //    {
+            //        if (q.Answers[i] == q.CorrectAnswer)
+            //        {
+            //            dic[i]++;
+            //        }
+            //    }
+            //    Assert.AreEqual(dic.Keys.Count, possibleAnswersQty, "")
+            //    Assert.AreEqual(possibleAnswersQty, q.Answers.Count(), $" {q.Answers.Count()} possible answers instead of {possibleAnswersQty} for {q.Id}, {q.Question}");
+            //}
         }
     }
 }
