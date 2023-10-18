@@ -55,7 +55,7 @@ namespace SyllabaryQuizGenerator
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
                 i.Question = ch.Transliteration;
                 i.CorrectAnswer = ch.Katakana;
-                i.Answers = Enumerable.Repeat("", numberOfPossibleAnswers).ToList();
+                i.Answers = Enumerable.Repeat("a", numberOfPossibleAnswers).ToList();
                 i.Answers[rnd.Next(numberOfPossibleAnswers)] = ch.Katakana;
             }
 
