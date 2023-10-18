@@ -261,5 +261,18 @@ namespace SyllabaryQuizGenerator.Tests
             }
             Assert.AreEqual(possibleAnswersQty, dic.Keys.Count, $"Correct answers are placed not randomly. Expected {possibleAnswersQty} random positions, but got {dic.Keys.Count}.");
         }
+
+        [TestMethod]
+        [DataRow(100, QuizType.EnglishToKatakana, 6)]
+        public void GenerateEnglishToKatakanaQuiz_PossibleAnswersAreNotEmpty(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        {
+            var test = qg.GenerateQuizItems(numberOfItems, QuizType.EnglishToKatakana, possibleAnswersQty);
+
+            foreach (var q in test)
+            {
+                var countEmpty = q.Answers.Where(x => string.IsNullOrEmpty(x)).Count();
+                Assert.AreEqual(0, countEmpty, $"{countEmpty} empty possible answers ");
+            }
+        }
     }
 }
