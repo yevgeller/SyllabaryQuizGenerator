@@ -249,18 +249,18 @@ namespace SyllabaryQuizGenerator.Tests
             foreach (var q in test)
             {
                 Dictionary<int, int> dic = new Dictionary<int, int>();
-                for (int i = 0; i < possibleAnswersQty; i++)
-                {
-                    dic.Add(i, 0);
-                }
+                
                 for (int i = 0; i < q.Answers.Count(); i++)
                 {
                     if (q.Answers[i] == q.CorrectAnswer)
                     {
-                        dic[i]++;
+                        if (dic.ContainsKey(i))
+                            dic[i]++;
+                        else 
+                            dic.Add(i, 1);
                     }
                 }
-                Assert.AreEqual(dic.Keys.Count, possibleAnswersQty, "")
+                Assert.AreEqual(dic.Keys.Count, possibleAnswersQty, "Answers are not randomly assigned");
                 //Assert.AreEqual(possibleAnswersQty, q.Answers.Count(), $" {q.Answers.Count()} possible answers instead of {possibleAnswersQty} for {q.Id}, {q.Question}");
             }
         }
