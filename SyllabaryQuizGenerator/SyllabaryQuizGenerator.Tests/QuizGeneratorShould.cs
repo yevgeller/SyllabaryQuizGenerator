@@ -245,24 +245,21 @@ namespace SyllabaryQuizGenerator.Tests
         public void GenerateEnglishToKatakanaQuiz_CorrectAnswerInRandomPosition(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, QuizType.EnglishToKatakana, possibleAnswersQty);
-            
+            Dictionary<int, int> dic = new Dictionary<int, int>();
             foreach (var q in test)
             {
-                Dictionary<int, int> dic = new Dictionary<int, int>();
-                
                 for (int i = 0; i < q.Answers.Count(); i++)
                 {
                     if (q.Answers[i] == q.CorrectAnswer)
                     {
                         if (dic.ContainsKey(i))
                             dic[i]++;
-                        else 
+                        else
                             dic.Add(i, 1);
                     }
                 }
-                Assert.AreEqual(dic.Keys.Count, possibleAnswersQty, "Answers are not randomly assigned");
-                //Assert.AreEqual(possibleAnswersQty, q.Answers.Count(), $" {q.Answers.Count()} possible answers instead of {possibleAnswersQty} for {q.Id}, {q.Question}");
             }
+            Assert.AreEqual(possibleAnswersQty, dic.Keys.Count, $"Correct answers are placed not randomly. Expected {possibleAnswersQty} random positions, but got {dic.Keys.Count}.");
         }
     }
 }
