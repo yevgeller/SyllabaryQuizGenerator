@@ -274,5 +274,18 @@ namespace SyllabaryQuizGenerator.Tests
                 Assert.AreEqual(0, countEmpty, $"{countEmpty} empty possible answers ");
             }
         }
+
+        [TestMethod]
+        [DataRow(100, QuizType.EnglishToKatakana, 6)]
+        public void GenerateEnglishToKatakanaQuiz_PossibleAnswersAreKatakana(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        {
+            var test = qg.GenerateQuizItems(numberOfItems, QuizType.EnglishToKatakana, possibleAnswersQty);
+
+            foreach (var q in test)
+            {
+                var countNonKatakana = q.Answers.Where(x => !Syllabary.Syllabary.IsKatakana(x)).Count();
+                Assert.AreEqual(0, countNonKatakana, $"{countNonKatakana} non-Katakana possible answers ");
+            }
+        }
     }
 }
