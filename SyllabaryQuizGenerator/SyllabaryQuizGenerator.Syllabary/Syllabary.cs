@@ -120,7 +120,17 @@ namespace SyllabaryQuizGenerator.Syllabary
 
         public static IEnumerable<string> GenerateKatakanaAnswers(string correctAnswer, int possibleAnswers)
         {
-            throw new NotImplementedException();
+            List<string> answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToList();
+            Random rnd = new Random(possibleAnswers);
+            int correctPosition = rnd.Next(possibleAnswers);
+            for(int i = 0; i < possibleAnswers; i++)
+            {
+                if (i == correctPosition)
+                    continue;
+
+
+            }
+
         }
 
         //public static List<string> AllKatakanaCharacters()
