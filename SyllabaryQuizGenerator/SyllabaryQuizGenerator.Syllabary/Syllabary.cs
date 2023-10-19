@@ -121,7 +121,7 @@ namespace SyllabaryQuizGenerator.Syllabary
         public static IEnumerable<string> GenerateKatakanaAnswers(string correctAnswer, int possibleAnswers)
         {
             string[] answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToArray();
-            Random rnd = new Random(possibleAnswers);
+            Random rnd = new Random();
             int correctPosition = rnd.Next(possibleAnswers);
             for (int i = 0; i < possibleAnswers; i++)
             {
@@ -132,7 +132,7 @@ namespace SyllabaryQuizGenerator.Syllabary
                 do
                 {
                     candidate = GetRandomKatakana();
-                } while (!answers.Contains(candidate));
+                } while (answers.Contains(candidate));
 
                 answers[i] = candidate;
             }

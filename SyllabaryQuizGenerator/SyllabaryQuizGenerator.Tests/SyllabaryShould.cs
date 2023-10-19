@@ -71,7 +71,7 @@
 
                 foreach (var i in list)
                 {
-                    Assert.IsFalse(dic.ContainsKey(i.ToString()));
+                    Assert.IsFalse(dic.ContainsKey(i.ToString()), $"Answer {i} found among other answers");
                     dic.Add(i, 1);
                 }
 
