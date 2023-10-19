@@ -56,7 +56,6 @@ namespace SyllabaryQuizGenerator
                 i.Question = ch.Transliteration;
                 i.CorrectAnswer = ch.Katakana;
                 i.Answers = Syllabary.Syllabary.GenerateKatakanaAnswers(ch.Katakana, numberOfPossibleAnswers).ToList(); 
-                i.Answers[rnd.Next(numberOfPossibleAnswers)] = ch.Katakana;
             }
 
             return items;
