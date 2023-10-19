@@ -109,13 +109,18 @@ namespace SyllabaryQuizGenerator.Syllabary
 
         public static bool IsTransliteration(string syllable)
         {
-            return translit.Where(x=>x == syllable).Any();
+            return translit.Where(x => x == syllable).Any();
         }
 
         public static SyllabaryCharacter FindBySomething(string what)
         {
             return GetSyllabaryCharacters()
                 .Where(x => x.Katakana == what || x.Hiragana == what || x.Transliteration == what).FirstOrDefault();
+        }
+
+        public static IEnumerable<string> GenerateKatakanaAnswers(string correctAnswer, int possibleAnswers)
+        {
+            throw new NotImplementedException();
         }
 
         //public static List<string> AllKatakanaCharacters()

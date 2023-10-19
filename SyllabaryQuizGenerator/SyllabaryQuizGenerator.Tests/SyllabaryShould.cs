@@ -64,20 +64,20 @@
         [TestMethod]
         public void GenerateKatakanaAnswers_NotRepeating()
         {
-            foreach(char k in katakanaSyllables)
+            foreach (char k in katakanaSyllables)
             {
- var list = Syllabary.Syllabary.GenerateKatakanaAnswers(k.ToString(), 6);
-                Dictionary<string, int> dic = new Dictionary<string, int>()
-                {
-                    foreach(var i in list)
+                var list = Syllabary.Syllabary.GenerateKatakanaAnswers(k.ToString(), 6);
+                Dictionary<string, int> dic = new Dictionary<string, int>();
+
+                foreach (var i in list)
                 {
                     Assert.IsFalse(dic.ContainsKey(i.ToString()));
                     dic.Add(i, 1);
                 }
-                }
+
             }
-           
-            
+
+
         }
     }
 }
