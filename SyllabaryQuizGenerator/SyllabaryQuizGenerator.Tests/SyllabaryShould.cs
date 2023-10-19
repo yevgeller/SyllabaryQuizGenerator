@@ -76,8 +76,23 @@
                 }
 
             }
+        }
 
+        [TestMethod]
+        public void GetRandomKatakana_AnswersSomewhatRandom()
+        {
+            var n = 10000;
+            Dictionary<string, int> dic  = new Dictionary<string, int>();
+            for(int i = 0; i < n; i++)
+            {
+                var randomKatakana = Syllabary.Syllabary.GetRandomKatakana();
+                if (!dic.ContainsKey(randomKatakana))
+                    dic.Add(randomKatakana, 1);
+                else
+                    dic[randomKatakana]++;
+            }
 
+            Assert.AreEqual(katakanaSyllables.Length, dic.Keys.Count, $"Not enough randomness in random Katakana over {n} attempts.");
         }
     }
 }

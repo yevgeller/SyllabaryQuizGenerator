@@ -139,7 +139,7 @@ namespace SyllabaryQuizGenerator.Syllabary
             return answers;
         }
 
-        private static string GetRandomKatakana()
+        public static string GetRandomKatakana()
         {
             Random rnd = new Random();
             return katakana[rnd.Next(katakana.Count())];
