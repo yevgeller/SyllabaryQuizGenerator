@@ -13,8 +13,8 @@ namespace SyllabaryQuizGenerator.Syllabary
         //string katakana = "ア イ ウ エ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ";
         //string hiragana = "  ぜ そ ぞ た だ ち ぢ っ つ づ て で と ど な に ぬ ね の は ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ ゐ ゑ を ん ゔ ゕ ゖ゛゜ゝゞゟ";
         //string katakana = "  ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ";
-        static string hiragana = "あいうえおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔ";
-        static string katakana = "アイウエオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴ";
+        static List<string> hiragana = "あ い う え お か が き ぎ く ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た だ ち ぢ っ つ づ て で と ど な に ぬ ね の は ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ ゐ ゑ を ん ゔ".Split(' ').ToList<string>();
+        static List<string> katakana = "ア イ ウ エ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ".Split(' ').ToList<string>();
         static List<string> translit = "a i u e o ka ga ki gi ku gu ke ge ko go sa za shi ji su zu se ze so zo ta da chi ji tsu zu te de to do na ni nu ne no ha ba pa hi bi pi fu bu pu he be pe ho bo po ma mi mu me mo ya yu yo".Split(' ').ToList<string>();
         public static List<SyllabaryCharacter> GetSyllabaryCharacters()
         {
@@ -99,12 +99,12 @@ namespace SyllabaryQuizGenerator.Syllabary
 
         public static bool IsHiragana(string syllable)
         {
-            return hiragana.IndexOf(syllable) >= 0; //TODO: switch to numbers something 
+            return hiragana.Contains(syllable); //TODO: switch to numbers something 
         }
 
         public static bool IsKatakana(string syllable)
         {
-            return katakana.IndexOf(syllable) >= 0;
+            return katakana.Contains(syllable);
         }
 
         public static bool IsTransliteration(string syllable)
@@ -120,17 +120,29 @@ namespace SyllabaryQuizGenerator.Syllabary
 
         public static IEnumerable<string> GenerateKatakanaAnswers(string correctAnswer, int possibleAnswers)
         {
-            List<string> answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToList();
+            string[] answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToArray();
             Random rnd = new Random(possibleAnswers);
             int correctPosition = rnd.Next(possibleAnswers);
-            for(int i = 0; i < possibleAnswers; i++)
+            for (int i = 0; i < possibleAnswers; i++)
             {
                 if (i == correctPosition)
                     continue;
 
+                string candidate = correctAnswer;
+                do
+                {
+                    candidate = GetRandomKatakana();
+                } while (!answers.Contains(candidate));
 
+                answers[i] = candidate;
             }
+            return answers;
+        }
 
+        private static string GetRandomKatakana()
+        {
+            Random rnd = new Random();
+            return katakana[rnd.Next(katakana.Count())];
         }
 
         //public static List<string> AllKatakanaCharacters()
