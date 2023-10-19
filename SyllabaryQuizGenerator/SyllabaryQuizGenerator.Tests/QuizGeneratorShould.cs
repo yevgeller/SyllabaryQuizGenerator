@@ -287,5 +287,22 @@ namespace SyllabaryQuizGenerator.Tests
                 Assert.AreEqual(0, countNonKatakana, $"{countNonKatakana} non-Katakana possible answers ");
             }
         }
+
+        [TestMethod]
+        [DataRow(100, QuizType.EnglishToKatakana, 6)]
+        public void GenerateQuiz_PossibleAnswersNotRepeating(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        {
+            var test = qg.GenerateQuizItems(numberOfItems, QuizType.EnglishToKatakana, possibleAnswersQty);
+
+            foreach (var q in test)
+            {
+                Dictionary<string, int> dic = new Dictionary<string, int>();
+                foreach (var a in q.Answers)
+                {
+                    Assert.IsTrue(dic.ContainsKey(a) == false, $"Answer {a} is already contained in Question {q.Id}");
+                    dic.Add(a, 1);
+                }
+            }
+        }
     }
 }
