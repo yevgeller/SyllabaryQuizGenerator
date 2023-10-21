@@ -84,12 +84,7 @@ namespace SyllabaryQuizGenerator
 
             return items;
         }
-        //Generate so many quiz items of a kind, test all six kinds
-        //public List<QuizItem> GenerateQuizItems(int number, QuizType quizType)
-        //{
-        //    var result = this.GenerateQuizItems(number);
+      
 
-        //    return result;
-        //}
     }
 }
