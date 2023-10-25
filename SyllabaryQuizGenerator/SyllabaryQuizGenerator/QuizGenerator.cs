@@ -1,12 +1,4 @@
-﻿using SyllabaryQuizGenerator.Syllabary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace SyllabaryQuizGenerator
+﻿namespace SyllabaryQuizGenerator
 {
     public class QuizGenerator
     {
@@ -48,7 +40,7 @@ namespace SyllabaryQuizGenerator
         {
             Random rnd = new Random();
 
-            var allChars = Syllabary.Syllabary.GetSyllabaryCharacters();            
+            var allChars = Syllabary.GetSyllabaryCharacters();            
 
             foreach(var i in items)
             {

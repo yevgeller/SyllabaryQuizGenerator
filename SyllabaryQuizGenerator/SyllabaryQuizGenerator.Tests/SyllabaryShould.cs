@@ -19,7 +19,7 @@
         {
             foreach (char k in katakanaSyllables)
             {
-                Assert.IsTrue(Syllabary.Syllabary.IsKatakana(k.ToString()));
+                Assert.IsTrue(Syllabary.IsKatakana(k.ToString()));
             }
 
         }
@@ -35,7 +35,7 @@
         {
             foreach (char h in hiraganaSyllables)
             {
-                Assert.IsTrue(Syllabary.Syllabary.IsHiragana(h.ToString()));
+                Assert.IsTrue(Syllabary.IsHiragana(h.ToString()));
             }
         }
 
@@ -44,7 +44,7 @@
         {
             foreach (var s in translit)
             {
-                Assert.IsTrue(Syllabary.Syllabary.IsTransliteration(s));
+                Assert.IsTrue(Syllabary.IsTransliteration(s));
             }
         }
 
@@ -53,8 +53,8 @@
         {
             foreach (char h in hiraganaSyllables)
             {
-                Assert.IsFalse(Syllabary.Syllabary.IsKatakana(h.ToString()));
-                Assert.IsFalse(Syllabary.Syllabary.IsTransliteration(h.ToString()));
+                Assert.IsFalse(Syllabary.IsKatakana(h.ToString()));
+                Assert.IsFalse(Syllabary.IsTransliteration(h.ToString()));
             }
         }
 
@@ -63,8 +63,8 @@
         {
             foreach (char k in katakanaSyllables)
             {
-                Assert.IsFalse(Syllabary.Syllabary.IsHiragana(k.ToString()));
-                Assert.IsFalse(Syllabary.Syllabary.IsTransliteration(k.ToString()));
+                Assert.IsFalse(Syllabary.IsHiragana(k.ToString()));
+                Assert.IsFalse(Syllabary.IsTransliteration(k.ToString()));
             }
         }
 
@@ -73,7 +73,7 @@
         {
             foreach (char k in katakanaSyllables)
             {
-                var list = Syllabary.Syllabary.GenerateKatakanaAnswers(k.ToString(), 6);
+                var list = Syllabary.GenerateKatakanaAnswers(k.ToString(), 6);
                 Dictionary<string, int> dic = new Dictionary<string, int>();
 
                 foreach (var i in list)
@@ -92,7 +92,7 @@
             Dictionary<string, int> dic  = new Dictionary<string, int>();
             for(int i = 0; i < n; i++)
             {
-                var randomKatakana = Syllabary.Syllabary.GetRandomKatakana();
+                var randomKatakana = Syllabary.GetRandomKatakana();
                 if (!dic.ContainsKey(randomKatakana))
                     dic.Add(randomKatakana, 1);
                 else

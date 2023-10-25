@@ -133,7 +133,7 @@ namespace SyllabaryQuizGenerator.Tests
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
-                Assert.IsTrue(Syllabary.Syllabary.IsTransliteration(qi.Question), $"Expected Question in English, but received {qi.Question}: Question Id: {qi.Id}");
+                Assert.IsTrue(Syllabary.IsTransliteration(qi.Question), $"Expected Question in English, but received {qi.Question}: Question Id: {qi.Id}");
             }
         }
 
@@ -192,7 +192,7 @@ namespace SyllabaryQuizGenerator.Tests
             var test = qg.GenerateQuizItems(numberOfItems);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.Syllabary.IsKatakana(q.CorrectAnswer), $"Correct answer is not Katakana for an E2K test: {q.Id}, {q.Question} ");
+                Assert.IsTrue(Syllabary.IsKatakana(q.CorrectAnswer), $"Correct answer is not Katakana for an E2K test: {q.Id}, {q.Question} ");
             }
         }
 
@@ -203,7 +203,7 @@ namespace SyllabaryQuizGenerator.Tests
             var test = qg.GenerateQuizItems(numberOfItems);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.Syllabary.IsKatakana(q.CorrectAnswer), $"Correct answer is not Katakana for an E2K test: {q.Id}, {q.Question} ");
+                Assert.IsTrue(Syllabary.IsKatakana(q.CorrectAnswer), $"Correct answer is not Katakana for an E2K test: {q.Id}, {q.Question} ");
             }
         }
 
@@ -294,7 +294,7 @@ namespace SyllabaryQuizGenerator.Tests
 
             foreach (var q in test)
             {
-                var countNonKatakana = q.Answers.Where(x => !Syllabary.Syllabary.IsKatakana(x)).Count();
+                var countNonKatakana = q.Answers.Where(x => !Syllabary.IsKatakana(x)).Count();
                 Assert.AreEqual(0, countNonKatakana, $"{countNonKatakana} non-Katakana possible answers ");
             }
         }
