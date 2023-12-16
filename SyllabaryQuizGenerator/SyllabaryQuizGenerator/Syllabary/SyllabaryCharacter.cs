@@ -11,6 +11,7 @@ namespace SyllabaryQuizGenerator
         public string Hiragana { get; set; }
         public string Katakana { get; set; }
         public string Transliteration { get; set; }
+        public int OrdinalNumber { get; set; }
         public bool IsDigraph { get; set; } = false;
         public bool IsWithDiacritics { get; set; } = false;
     }

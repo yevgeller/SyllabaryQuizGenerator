@@ -27,7 +27,7 @@
         [TestMethod]
         public void All_HaveOrdinalNumbers()
         {
-            Assert.IsFalse(Syllabary.Syllabary.GetSyllabaryCharacters().Any(x=>x.OrdinalNumber < 1));
+            Assert.IsFalse(Syllabary.GetSyllabaryCharacters().Any(x=>x.OrdinalNumber < 1));
         }
 
         [TestMethod]

@@ -48,7 +48,7 @@
                 i.Question = ch.Transliteration;
                 i.CorrectAnswer = ch.Katakana;
                 i.OrdinalNumber = ch.OrdinalNumber;
-                i.Answers = Syllabary.Syllabary.GenerateKatakanaAnswers(ch.Katakana, numberOfPossibleAnswers).ToList(); 
+                i.Answers = Syllabary.GenerateKatakanaAnswers(ch.Katakana, numberOfPossibleAnswers).ToList(); 
             }
 
             return items;
