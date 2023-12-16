@@ -57,6 +57,17 @@ namespace SyllabaryQuizGenerator.Tests
             }
         }
 
+        [DataRow(10000)]
+        [TestMethod]
+        public void GenerateListOfQuizItems_EachHasAnOrdinalNumber(int numberOfItems)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
+            foreach(var qi in quizItems)
+            {
+                Assert.IsTrue(qi.OrdinalNumber  > 0, $"Ordinal number of question {qi.Question} is null or a zero");
+            }
+        }
+
         [TestMethod]
         [DataRow(-1)]
         [DataRow(0)]

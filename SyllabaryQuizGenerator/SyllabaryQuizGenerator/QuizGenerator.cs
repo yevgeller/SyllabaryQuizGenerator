@@ -55,6 +55,7 @@ namespace SyllabaryQuizGenerator
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
                 i.Question = ch.Transliteration;
                 i.CorrectAnswer = ch.Katakana;
+                i.OrdinalNumber = ch.OrdinalNumber;
                 i.Answers = Syllabary.Syllabary.GenerateKatakanaAnswers(ch.Katakana, numberOfPossibleAnswers).ToList(); 
             }
 
