@@ -8,6 +8,7 @@ namespace SyllabaryQuizGenerator.Syllabary
 {
     public class SyllabaryCharacter
     {
+        public int OrdinalNumber { get; set; }
         public string Hiragana { get; set; }
         public string Katakana { get; set; }
         public string Transliteration { get; set; }
