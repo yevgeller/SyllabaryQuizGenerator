@@ -33,6 +33,10 @@
             {
                 return AssignEnglishToKatakanaQuestions(items, numberOfPossibleAnswers);
             }
+            if(quizType == QuizType.KatakanaToEnglish)
+            {
+                throw new NotImplementedException();
+            }
             return items;
         }
 
