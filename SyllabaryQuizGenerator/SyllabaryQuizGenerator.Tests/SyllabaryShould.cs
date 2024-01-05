@@ -5,21 +5,20 @@ namespace SyllabaryQuizGenerator.Tests
     [TestClass]
     public class SyllabaryShould
     {
-        char[] katakanaSyllables, hiraganaSyllables;
-        List<string> translit;
+        List<string> translit, katakanaSyllables, hiraganaSyllables;
 
         [TestInitialize]
         public void Initialize()
         {
-            katakanaSyllables = "アイウエオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴ".ToCharArray();
-            hiraganaSyllables = "あいうえおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔ".ToCharArray();
+            katakanaSyllables = "ア,イ,ウ,エ,オ,カ,ガ,キ,ギ,ク,グ,ケ,ゲ,コ,ゴ,サ,ザ,シ,ジ,ス,ズ,セ,ゼ,ソ,ゾ,タ,ダ,チ,ヂ,ッ,ツ,ヅ,テ,デ,ト,ド,ナ,ニ,ヌ,ネ,ノ,ハ,バ,パ,ヒ,ビ,ピ,フ,ブ,プ,ヘ,ベ,ペ,ホ,ボ,ポ,マ,ミ,ム,メ,モ,ャ,ヤ,ュ,ユ,ョ,ヨ,ラ,リ,ル,レ,ロ,ヮ,ワ,ヰ,ヱ,ヲ,ン,ヴ".Split(',').ToList<string>();
+            hiraganaSyllables = "あ,い,う,え,お,か,が,き,ぎ,く,ぐ,け,げ,こ,ご,さ,ざ,し,じ,す,ず,せ,ぜ,そ,ぞ,た,だ,ち,ぢ,っ,つ,づ,て,で,と,ど,な,に,ぬ,ね,の,は,ば,ぱ,ひ,び,ぴ,ふ,ぶ,ぷ,へ,べ,ぺ,ほ,ぼ,ぽ,ま,み,む,め,も,ゃ,や,ゅ,ゆ,ょ,よ,ら,り,る,れ,ろ,ゎ,わ,ゐ,ゑ,を,ん,ゔ".Split(',').ToList<string>();
             translit = "a i u e o ka ga ki gi ku gu ke ge ko go sa za shi ji su zu se ze so zo ta da chi ji tsu zu te de to do na ni nu ne no ha ba pa hi bi pi fu bu pu he be pe ho bo po ma mi mu me mo ya yu yo".Split(' ').ToList<string>();
         }
 
         [TestMethod]
         public void Check_IsKatakana()
         {
-            foreach (char k in katakanaSyllables)
+            foreach (string k in katakanaSyllables)
             {
                 Assert.IsTrue(Syllabary.IsKatakana(k.ToString()));
             }
@@ -35,7 +34,7 @@ namespace SyllabaryQuizGenerator.Tests
         [TestMethod]
         public void Check_IsHiragana()
         {
-            foreach (char h in hiraganaSyllables)
+            foreach (string h in hiraganaSyllables)
             {
                 Assert.IsTrue(Syllabary.IsHiragana(h.ToString()));
             }
@@ -53,7 +52,7 @@ namespace SyllabaryQuizGenerator.Tests
         [TestMethod]
         public void Check_NotIsHiragana()
         {
-            foreach (char h in hiraganaSyllables)
+            foreach (string h in hiraganaSyllables)
             {
                 Assert.IsFalse(Syllabary.IsKatakana(h.ToString()));
                 Assert.IsFalse(Syllabary.IsTransliteration(h.ToString()));
@@ -63,7 +62,7 @@ namespace SyllabaryQuizGenerator.Tests
         [TestMethod]
         public void Check_NotIsKatakana()
         {
-            foreach (char k in katakanaSyllables)
+            foreach (string k in katakanaSyllables)
             {
                 Assert.IsFalse(Syllabary.IsHiragana(k.ToString()));
                 Assert.IsFalse(Syllabary.IsTransliteration(k.ToString()));
@@ -73,7 +72,7 @@ namespace SyllabaryQuizGenerator.Tests
         [TestMethod]
         public void GenerateKatakanaAnswers_NotRepeating()
         {
-            foreach (char k in katakanaSyllables)
+            foreach (string k in katakanaSyllables)
             {
                 var list = Syllabary.GenerateKatakanaAnswers(k.ToString(), 6);
                 Dictionary<string, int> dic = new Dictionary<string, int>();
@@ -90,12 +89,12 @@ namespace SyllabaryQuizGenerator.Tests
         [TestMethod]
         public void GenerateKatakanaAnswers_AllAnswersAreKatakana()
         {
-            foreach (char k in katakanaSyllables)
+            foreach (string k in katakanaSyllables)
             {
                 var list = Syllabary.GenerateKatakanaAnswers(k.ToString(), 6);
                 foreach (var i in list)
                 {
-                    Assert.IsTrue(Array.IndexOf(katakanaSyllables, i[0]) >= 0, $"{i} is not a Katakana character");
+                    Assert.IsTrue(katakanaSyllables.Contains(i), $"{i} is not a Katakana character");
                 }
             }
         }
@@ -144,7 +143,7 @@ namespace SyllabaryQuizGenerator.Tests
                     dic[randomKatakana]++;
             }
 
-            Assert.AreEqual(katakanaSyllables.Length, dic.Keys.Count, $"Not enough randomness in random Katakana over {n} attempts.");
+            Assert.AreEqual(katakanaSyllables.Count, dic.Keys.Count, $"Not enough randomness in random Katakana over {n} attempts.");
         }
     }
 }
