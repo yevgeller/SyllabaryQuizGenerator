@@ -35,7 +35,7 @@
             }
             if(quizType == QuizType.KatakanaToEnglish)
             {
-                throw new NotImplementedException();
+                return AssignKatakanaToEnglishQuestions(items, numberOfPossibleAnswers);
             }
             return items;
         }
@@ -53,6 +53,24 @@
                 i.CorrectAnswer = ch.Katakana;
                 i.OrdinalNumber = ch.OrdinalNumber;
                 i.Answers = Syllabary.GenerateKatakanaAnswers(ch.Katakana, numberOfPossibleAnswers).ToList(); 
+            }
+
+            return items;
+        }
+
+        private List<QuizItem> AssignKatakanaToEnglishQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
+        {
+            Random rnd = new Random();
+
+            var allChars = Syllabary.GetSyllabaryCharacters();
+
+            foreach (var i in items)
+            {
+                SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
+                i.Question = ch.Katakana; //ch.Transliteration;
+                i.CorrectAnswer = ch.Transliteration; //ch.Katakana;
+                i.OrdinalNumber = ch.OrdinalNumber;
+                i.Answers = Syllabary.GenerateKatakanaAnswers(ch.Katakana, numberOfPossibleAnswers).ToList();
             }
 
             return items;

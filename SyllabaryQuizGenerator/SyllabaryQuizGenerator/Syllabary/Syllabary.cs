@@ -139,6 +139,27 @@
             return katakana[rnd.Next(katakana.Count())];
         }
 
+        public static IEnumerable<string> GenerateTranslitAnswers(string correctAnswer, int possibleAnswers)
+        {
+            string[] answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToArray();
+            Random rnd = new Random();
+            int correctPosition = rnd.Next(possibleAnswers);
+            for (int i = 0; i < possibleAnswers; i++)
+            {
+                if (i == correctPosition)
+                    continue;
+
+                string candidate = correctAnswer;
+                do
+                {
+                    candidate = GetRandomKatakana();
+                } while (answers.Contains(candidate));
+
+                answers[i] = candidate;
+            }
+            return answers;
+        }
+
         //public static List<string> AllKatakanaCharacters()
         //{
         //    var syllabary = Syllabary.GetSyllabaryCharacters();

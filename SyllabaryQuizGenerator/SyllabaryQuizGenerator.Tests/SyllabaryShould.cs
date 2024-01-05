@@ -1,4 +1,6 @@
-﻿namespace SyllabaryQuizGenerator.Tests
+﻿using System.Linq;
+
+namespace SyllabaryQuizGenerator.Tests
 {
     [TestClass]
     public class SyllabaryShould
@@ -82,6 +84,49 @@
                     dic.Add(i, 1);
                 }
 
+            }
+        }
+
+        [TestMethod]
+        public void GenerateKatakanaAnswers_AllAnswersAreKatakana()
+        {
+            foreach (char k in katakanaSyllables)
+            {
+                var list = Syllabary.GenerateKatakanaAnswers(k.ToString(), 6);
+                foreach (var i in list)
+                {
+                    Assert.IsTrue(Array.IndexOf(katakanaSyllables, i[0]) >= 0, $"{i} is not a Katakana character");
+                }
+            }
+        }
+
+        [TestMethod]
+        public void GenerateTransliterationAnswers_NotRepeating()
+        {
+            foreach (string t in translit)
+            {
+                var list = Syllabary.GenerateTranslitAnswers(t, 6);
+                Dictionary<string, int> dic = new Dictionary<string, int>();
+
+                foreach (var i in list)
+                {
+                    Assert.IsFalse(dic.ContainsKey(i.ToString()), $"Answer {i} found among other answers");
+                    dic.Add(i, 1);
+                }
+
+            }
+        }
+
+        [TestMethod]
+        public void GenerateTransliterationAnswers_AllAnswersAreTransliteration()
+        {
+            foreach (string t in translit)
+            {
+                var list = Syllabary.GenerateTranslitAnswers(t, 6);
+                foreach(var i in list)
+                {
+                    Assert.IsTrue(translit.Contains(i), $"{i} is not a transliteration character");
+                }
             }
         }
 
