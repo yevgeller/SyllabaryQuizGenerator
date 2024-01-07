@@ -67,10 +67,10 @@
             foreach (var i in items)
             {
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
-                i.Question = ch.Katakana; //ch.Transliteration;
-                i.CorrectAnswer = ch.Transliteration; //ch.Katakana;
+                i.Question = ch.Katakana;
+                i.CorrectAnswer = ch.Transliteration;
                 i.OrdinalNumber = ch.OrdinalNumber;
-                i.Answers = Syllabary.GenerateKatakanaAnswers(ch.Katakana, numberOfPossibleAnswers).ToList();
+                i.Answers = Syllabary.GenerateTranslitAnswers(ch.Transliteration, numberOfPossibleAnswers).ToList();
             }
 
             return items;

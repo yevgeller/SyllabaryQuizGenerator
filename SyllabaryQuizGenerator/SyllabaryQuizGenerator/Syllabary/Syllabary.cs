@@ -152,12 +152,18 @@
                 string candidate = correctAnswer;
                 do
                 {
-                    candidate = GetRandomKatakana();
+                    candidate = GetRandomTransliteration();
                 } while (answers.Contains(candidate));
 
                 answers[i] = candidate;
             }
             return answers;
+        }
+
+        public static string GetRandomTransliteration()
+        {
+            Random rnd = new Random();
+            return translit[rnd.Next(translit.Count())];
         }
 
         //public static List<string> AllKatakanaCharacters()
