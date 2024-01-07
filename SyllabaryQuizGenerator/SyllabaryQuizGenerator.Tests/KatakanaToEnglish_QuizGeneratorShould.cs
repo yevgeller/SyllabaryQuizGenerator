@@ -109,12 +109,12 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_QuestionIsEnglish(int numberOfItems, QuizType quizType)
+        public void K2E_GenerateQuiz_QuestionIsKatakana(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
-                Assert.IsTrue(Syllabary.IsTransliteration(qi.Question), $"Expected Question in English, but received {qi.Question}: Question Id: {qi.Id}");
+                Assert.IsTrue(Syllabary.IsKatakana(qi.Question!), $"Expected Question in Katakana, but received {qi.Question}: Question Id: {qi.Id}");
             }
         }
 
@@ -269,14 +269,14 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(100, QuizType.KatakanaToEnglish, 6)]
-        public void K2E_GenerateQuiz_PossibleAnswersAreKatakana(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        public void K2E_GenerateQuiz_PossibleAnswersAreTransliteration(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
             foreach (var q in test)
             {
-                var countNonKatakana = q.Answers.Where(x => !Syllabary.IsKatakana(x)).Count();
-                Assert.AreEqual(0, countNonKatakana, $"{countNonKatakana} non-Katakana possible answers ");
+                var countNonKatakana = q.Answers.Where(x => !Syllabary.IsTransliteration(x)).Count();
+                Assert.AreEqual(0, countNonKatakana, $"{countNonKatakana} non-Transliteration possible answers ");
             }
         }
 
