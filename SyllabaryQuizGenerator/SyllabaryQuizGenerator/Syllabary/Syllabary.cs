@@ -164,7 +164,7 @@
         {
             Random rnd = new Random();
             return translit[rnd.Next(translit.Count())];
-        }
+        } 
 
         //public static List<string> AllKatakanaCharacters()
         //{
