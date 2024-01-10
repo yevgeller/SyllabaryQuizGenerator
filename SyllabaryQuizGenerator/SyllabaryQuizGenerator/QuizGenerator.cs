@@ -7,7 +7,7 @@
             return new List<QuizItem>();
         }
 
-        public List<QuizItem> GenerateQuizItems(int number, QuizType quizType = QuizType.EnglishToKatakana, int numberOfPossibleAnswers = 4)
+        public List<QuizItem> GenerateQuizItems(int number, QuizType quizType = QuizType.TransliterationToKatakana, int numberOfPossibleAnswers = 4)
         {
             if (number < 1)
             {
@@ -29,18 +29,18 @@
 
         private List<QuizItem> AssignQuestions(List<QuizItem> items, QuizType quizType, int numberOfPossibleAnswers)
         {
-            if(quizType == QuizType.EnglishToKatakana)
+            if(quizType == QuizType.TransliterationToKatakana)
             {
-                return AssignEnglishToKatakanaQuestions(items, numberOfPossibleAnswers);
+                return AssignTransliterationToKatakanaQuestions(items, numberOfPossibleAnswers);
             }
-            if(quizType == QuizType.KatakanaToEnglish)
+            if(quizType == QuizType.KatakanaToTransliteration)
             {
-                return AssignKatakanaToEnglishQuestions(items, numberOfPossibleAnswers);
+                return AssignKatakanaToTransliterationQuestions(items, numberOfPossibleAnswers);
             }
             return items;
         }
 
-        private List<QuizItem> AssignEnglishToKatakanaQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
+        private List<QuizItem> AssignTransliterationToKatakanaQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
         {
             Random rnd = new Random();
 
@@ -58,7 +58,7 @@
             return items;
         }
 
-        private List<QuizItem> AssignKatakanaToEnglishQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
+        private List<QuizItem> AssignKatakanaToTransliterationQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
         {
             Random rnd = new Random();
 

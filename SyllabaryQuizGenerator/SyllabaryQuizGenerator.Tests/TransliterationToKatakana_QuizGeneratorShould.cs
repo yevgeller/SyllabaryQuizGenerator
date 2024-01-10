@@ -1,15 +1,21 @@
-﻿namespace SyllabaryQuizGenerator.Tests
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SyllabaryQuizGenerator.Tests
 {
-    //Katakana to English Quiz Generator tests
+    //English to Katakana specific tests
     public partial class QuizGeneratorShould
     {
-        [DataRow(3, QuizType.KatakanaToEnglish)]
-        [DataRow(5, QuizType.KatakanaToEnglish)]
-        [DataRow(500, QuizType.KatakanaToEnglish)]
-        [DataRow(50000, QuizType.KatakanaToEnglish)]
-        [DataRow(1000000, QuizType.KatakanaToEnglish)]
+        [DataRow(3, QuizType.TransliterationToKatakana)]
+        [DataRow(5, QuizType.TransliterationToKatakana)]
+        [DataRow(500, QuizType.TransliterationToKatakana)]
+        [DataRow(50000, QuizType.TransliterationToKatakana)]
+        [DataRow(1000000, QuizType.TransliterationToKatakana)]
         [TestMethod]
-        public void K2E_ReturnListOfQuizItems_HasRequestedNumberOfItems(int numberOfItems, QuizType quizType)
+        public void E2K_ReturnListOfQuizItems_HasRequestedNumberOfItems(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             Assert.IsNotNull(quizItems);
@@ -18,8 +24,8 @@
 
 
         [TestMethod]
-        [DataRow(5, QuizType.KatakanaToEnglish)]
-        public void K2E_ReturnListOfQuizItems_EachItemHasId(int numberOfItems, QuizType quizType)
+        [DataRow(5, QuizType.TransliterationToKatakana)]
+        public void E2K_ReturnListOfQuizItems_EachItemHasId(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
 
@@ -29,9 +35,9 @@
             }
         }
 
-        [DataRow(1000, QuizType.KatakanaToEnglish)]
+        [DataRow(1000, QuizType.TransliterationToKatakana)]
         [TestMethod]
-        public void K2E_GenerateListOfQuizItems_EachItemHasAUniqueId(int numberOfItems, QuizType quizType)
+        public void E2K_GenerateListOfQuizItems_EachItemHasAUniqueId(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<int, int> dic = new Dictionary<int, int>();
@@ -42,9 +48,9 @@
             }
         }
 
-        [DataRow(10000, QuizType.KatakanaToEnglish)]
+        [DataRow(10000, QuizType.TransliterationToKatakana)]
         [TestMethod]
-        public void K2E_GenerateListOfQuizItems_EachHasAnOrdinalNumber(int numberOfItems, QuizType quizType)
+        public void E2K_GenerateListOfQuizItems_EachHasAnOrdinalNumber(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
@@ -54,8 +60,8 @@
         }
 
         [TestMethod]
-        [DataRow(10, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_EachItemHasNextQuestionId(int numberOfItems, QuizType quizType)
+        [DataRow(10, QuizType.TransliterationToKatakana)]
+        public void E2K_GenerateQuiz_EachItemHasNextQuestionId(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
@@ -65,8 +71,8 @@
         }
 
         [TestMethod]
-        [DataRow(10000, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_EachNextQuestionIdIsUnique(int numberOfItems, QuizType quizType)
+        [DataRow(10000, QuizType.TransliterationToKatakana)]
+        public void E2K_GenerateQuiz_EachNextQuestionIdIsUnique(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<int, int> dic = new Dictionary<int, int>();
@@ -78,11 +84,11 @@
         }
 
         [TestMethod]
-        [DataRow(10, QuizType.KatakanaToEnglish)]
-        [DataRow(100, QuizType.KatakanaToEnglish)]
-        [DataRow(1000, QuizType.KatakanaToEnglish)]
-        [DataRow(10000, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_LastItemNextQuizItemIdIsZero(int numberOfItems, QuizType quizType)
+        [DataRow(10, QuizType.TransliterationToKatakana)]
+        [DataRow(100, QuizType.TransliterationToKatakana)]
+        [DataRow(1000, QuizType.TransliterationToKatakana)]
+        [DataRow(10000, QuizType.TransliterationToKatakana)]
+        public void E2K_GenerateQuiz_LastItemNextQuizItemIdIsZero(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType).ToList();
             var itemsWithNextQuizItemIdOfZero = quizItems.Where(x => x.NextQuizItemId == 0).ToList();
@@ -91,8 +97,8 @@
         }
 
         [TestMethod]
-        [DataRow(10, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_QuestionIsNotEmpty(int numberOfItems, QuizType quizType)
+        [DataRow(10, QuizType.TransliterationToKatakana)]
+        public void E2K_GenerateQuiz_QuestionIsNotEmpty(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
@@ -102,21 +108,21 @@
         }
 
         [TestMethod]
-        [DataRow(10, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_QuestionIsKatakana(int numberOfItems, QuizType quizType)
+        [DataRow(10, QuizType.TransliterationToKatakana)]
+        public void E2K_GenerateQuiz_QuestionIsEnglish(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
-                Assert.IsTrue(Syllabary.IsKatakana(qi.Question!), $"Expected Question in Katakana, but received {qi.Question}: Question Id: {qi.Id}");
+                Assert.IsTrue(Syllabary.IsTransliteration(qi.Question), $"Expected Question in English, but received {qi.Question}: Question Id: {qi.Id}");
             }
         }
 
         [TestMethod]
-        [DataRow(10, QuizType.KatakanaToEnglish)]
-        [DataRow(30, QuizType.KatakanaToEnglish)]
-        [DataRow(40, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_QuestionsAreRandomForSmallTestQuantities(int numberOfItems, QuizType quizType)
+        [DataRow(10, QuizType.TransliterationToKatakana)]
+        [DataRow(30, QuizType.TransliterationToKatakana)]
+        [DataRow(40, QuizType.TransliterationToKatakana)]
+        public void E2K_GenerateQuiz_QuestionsAreRandomForSmallTestQuantities(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<string, int> dic = new Dictionary<string, int>();
@@ -131,10 +137,10 @@
         }
 
         [TestMethod]
-        [DataRow(100, QuizType.KatakanaToEnglish)]
-        [DataRow(1000, QuizType.KatakanaToEnglish)]
-        [DataRow(10000, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_QuestionsAreRandomForLargeTestQuantities(int numberOfItems, QuizType quizType)
+        [DataRow(100, QuizType.TransliterationToKatakana)]
+        [DataRow(1000, QuizType.TransliterationToKatakana)]
+        [DataRow(10000, QuizType.TransliterationToKatakana)]
+        public void E2K_GenerateQuiz_QuestionsAreRandomForLargeTestQuantities(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<string, int> dic = new Dictionary<string, int>();
@@ -150,8 +156,8 @@
         }
 
         [TestMethod]
-        [DataRow(10, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_CorrectAnswerIsNotEmpty(int numberOfItems, QuizType quizType)
+        [DataRow(10, QuizType.TransliterationToKatakana)]
+        public void E2K_GenerateQuiz_CorrectAnswerIsNotEmpty(int numberOfItems, QuizType quizType)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
@@ -161,30 +167,30 @@
         }
 
         [TestMethod]
-        [DataRow(10, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_CorrectAnswerIsKatakana(int numberOfItems, QuizType quizType)
+        [DataRow(10, QuizType.TransliterationToKatakana)]
+        public void E2K_GenerateQuiz_CorrectAnswerIsKatakana(int numberOfItems, QuizType quizType)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsTransliteration(q.CorrectAnswer), $"Correct answer is not Katakana for an K2E test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsKatakana(q.CorrectAnswer), $"Correct answer is not Katakana for an E2K test: {q.Id}, {q.Question} ");
             }
         }
 
         [TestMethod]
-        [DataRow(10000, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_CorrectAnswerIsCorrectKatakana(int numberOfItems, QuizType quizType)
+        [DataRow(10000, QuizType.TransliterationToKatakana)]
+        public void E2K_GenerateQuiz_CorrectAnswerIsCorrectKatakana(int numberOfItems, QuizType quizType)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsTransliteration(q.CorrectAnswer), $"Correct answer is not Transliteration for an K2E test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsKatakana(q.CorrectAnswer), $"Correct answer is not Katakana for an E2K test: {q.Id}, {q.Question} ");
             }
         }
 
         [TestMethod]
-        [DataRow(10000, QuizType.KatakanaToEnglish)]
-        public void K2E_GenerateQuiz_OnlyOneOfTheAnswersIsCorrect(int numberOfItems, QuizType quizType)
+        [DataRow(10000, QuizType.TransliterationToKatakana)]
+        public void E2K_GenerateQuiz_OnlyOneOfTheAnswersIsCorrect(int numberOfItems, QuizType quizType)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
@@ -195,12 +201,12 @@
         }
 
         [TestMethod]
-        [DataRow(10000, QuizType.KatakanaToEnglish, 2)]
-        [DataRow(10000, QuizType.KatakanaToEnglish, 3)]
-        [DataRow(10000, QuizType.KatakanaToEnglish, 4)]
-        [DataRow(10000, QuizType.KatakanaToEnglish, 5)]
-        [DataRow(10000, QuizType.KatakanaToEnglish, 6)]
-        public void K2E_GenerateQuiz_CanAdjustTheNumberOfPossibleAnswers(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        [DataRow(10000, QuizType.TransliterationToKatakana, 2)]
+        [DataRow(10000, QuizType.TransliterationToKatakana, 3)]
+        [DataRow(10000, QuizType.TransliterationToKatakana, 4)]
+        [DataRow(10000, QuizType.TransliterationToKatakana, 5)]
+        [DataRow(10000, QuizType.TransliterationToKatakana, 6)]
+        public void E2K_GenerateQuiz_CanAdjustTheNumberOfPossibleAnswers(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
@@ -211,24 +217,24 @@
         }
 
         [TestMethod]
-        [DataRow(10, QuizType.KatakanaToEnglish, -100)]
-        [DataRow(10, QuizType.KatakanaToEnglish, 0)]
-        [DataRow(10, QuizType.KatakanaToEnglish, 1)]
-        [DataRow(10, QuizType.KatakanaToEnglish, 7)]
-        [DataRow(10, QuizType.KatakanaToEnglish, 100)]
+        [DataRow(10, QuizType.TransliterationToKatakana, -100)]
+        [DataRow(10, QuizType.TransliterationToKatakana, 0)]
+        [DataRow(10, QuizType.TransliterationToKatakana, 1)]
+        [DataRow(10, QuizType.TransliterationToKatakana, 7)]
+        [DataRow(10, QuizType.TransliterationToKatakana, 100)]
         [ExpectedException(typeof(ArgumentException))]
-        public void K2E_AskToGenerateInappropriateNumberOfPossibleAnswers_ReceiveException(int numberOfItems, QuizType quizType, int numberOfPossibleAnswers)
+        public void E2K_AskToGenerateInappropriateNumberOfPossibleAnswers_ReceiveException(int numberOfItems, QuizType quizType, int numberOfPossibleAnswers)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType, numberOfPossibleAnswers);
         }
 
         [TestMethod]
-        [DataRow(50, QuizType.KatakanaToEnglish, 2)]
-        [DataRow(50, QuizType.KatakanaToEnglish, 3)]
-        [DataRow(50, QuizType.KatakanaToEnglish, 4)]
-        [DataRow(50, QuizType.KatakanaToEnglish, 5)]
-        [DataRow(50, QuizType.KatakanaToEnglish, 6)]
-        public void K2E_GenerateQuiz_CorrectAnswerInRandomPosition(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        [DataRow(50, QuizType.TransliterationToKatakana, 2)]
+        [DataRow(50, QuizType.TransliterationToKatakana, 3)]
+        [DataRow(50, QuizType.TransliterationToKatakana, 4)]
+        [DataRow(50, QuizType.TransliterationToKatakana, 5)]
+        [DataRow(50, QuizType.TransliterationToKatakana, 6)]
+        public void E2K_GenerateQuiz_CorrectAnswerInRandomPosition(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
             Dictionary<int, int> dic = new Dictionary<int, int>();
@@ -249,8 +255,8 @@
         }
 
         [TestMethod]
-        [DataRow(100, QuizType.KatakanaToEnglish, 6)]
-        public void K2E_GenerateQuiz_PossibleAnswersAreNotEmpty(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        [DataRow(100, QuizType.TransliterationToKatakana, 6)]
+        public void E2K_GenerateQuiz_PossibleAnswersAreNotEmpty(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
@@ -262,21 +268,21 @@
         }
 
         [TestMethod]
-        [DataRow(100, QuizType.KatakanaToEnglish, 6)]
-        public void K2E_GenerateQuiz_PossibleAnswersAreTransliteration(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        [DataRow(100, QuizType.TransliterationToKatakana, 6)]
+        public void E2K_GenerateQuiz_PossibleAnswersAreKatakana(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
             foreach (var q in test)
             {
-                var countNonKatakana = q.Answers.Where(x => !Syllabary.IsTransliteration(x)).Count();
-                Assert.AreEqual(0, countNonKatakana, $"{countNonKatakana} non-Transliteration possible answers ");
+                var countNonKatakana = q.Answers.Where(x => !Syllabary.IsKatakana(x)).Count();
+                Assert.AreEqual(0, countNonKatakana, $"{countNonKatakana} non-Katakana possible answers ");
             }
         }
 
         [TestMethod]
-        [DataRow(100, QuizType.KatakanaToEnglish, 6)]
-        public void K2E_GenerateQuiz_PossibleAnswersNotRepeating(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        [DataRow(100, QuizType.TransliterationToKatakana, 6)]
+        public void E2K_GenerateQuiz_PossibleAnswersNotRepeating(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
