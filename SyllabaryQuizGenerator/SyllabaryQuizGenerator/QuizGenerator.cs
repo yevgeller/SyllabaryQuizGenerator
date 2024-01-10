@@ -91,7 +91,7 @@
                 i.Question = ch.Transliteration;
                 i.CorrectAnswer = ch.Hiragana;
                 i.OrdinalNumber = ch.OrdinalNumber;
-                i.Answers = Syllabary.GenerateHiraganaAnswers(ch.Hiragana, numberOfPossibleAnswers).ToList();
+                i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomSyllabaryCharacter, SyllabaryType.Hiragana, ch.Hiragana,  numberOfPossibleAnswers).ToList();
             }
 
             return items;
