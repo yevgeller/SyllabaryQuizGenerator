@@ -187,6 +187,41 @@
             return answers;
         }
 
+        public static IEnumerable<string> GenerateAnswers(Func<SyllabaryType, string> GetRandomCharacter, SyllabaryType syllabaryType, string correctAnswer, int possibleAnswers)
+        {
+            string[] answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToArray();
+            Random rnd = new Random();
+            int correctPosition = rnd.Next(possibleAnswers);
+            for (int i = 0; i < possibleAnswers; i++)
+            {
+                if (i == correctPosition)
+                    continue;
+
+                string candidate = correctAnswer;
+                do
+                {
+                    candidate = GetRandomCharacter(syllabaryType);
+                } while (answers.Contains(candidate));
+
+                answers[i] = candidate;
+            }
+            return answers;
+        }
+
+        public static string GetRandomSyllabaryCharacter(SyllabaryType syllabaryType)
+        {
+            Random rnd = new Random();
+            if (syllabaryType == SyllabaryType.Katakana)
+            {
+                return katakana[rnd.Next(katakana.Count())];
+            }
+            if (syllabaryType == SyllabaryType.Hiragana)
+            {
+                return hiragana[rnd.Next(hiragana.Count())];
+            }
+            return translit[rnd.Next(translit.Count())];
+        }
+
         public static string GetRandomTransliteration()
         {
             Random rnd = new Random();
