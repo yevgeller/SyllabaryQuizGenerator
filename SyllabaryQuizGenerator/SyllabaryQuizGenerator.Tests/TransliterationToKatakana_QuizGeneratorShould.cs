@@ -15,7 +15,7 @@ namespace SyllabaryQuizGenerator.Tests
         [DataRow(50000, QuizType.TransliterationToKatakana)]
         [DataRow(1000000, QuizType.TransliterationToKatakana)]
         [TestMethod]
-        public void E2K_ReturnListOfQuizItems_HasRequestedNumberOfItems(int numberOfItems, QuizType quizType)
+        public void T2K_ReturnListOfQuizItems_HasRequestedNumberOfItems(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             Assert.IsNotNull(quizItems);
@@ -25,7 +25,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(5, QuizType.TransliterationToKatakana)]
-        public void E2K_ReturnListOfQuizItems_EachItemHasId(int numberOfItems, QuizType quizType)
+        public void T2K_ReturnListOfQuizItems_EachItemHasId(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
 
@@ -37,7 +37,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [DataRow(1000, QuizType.TransliterationToKatakana)]
         [TestMethod]
-        public void E2K_GenerateListOfQuizItems_EachItemHasAUniqueId(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateListOfQuizItems_EachItemHasAUniqueId(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<int, int> dic = new Dictionary<int, int>();
@@ -50,7 +50,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [DataRow(10000, QuizType.TransliterationToKatakana)]
         [TestMethod]
-        public void E2K_GenerateListOfQuizItems_EachHasAnOrdinalNumber(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateListOfQuizItems_EachHasAnOrdinalNumber(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
@@ -61,7 +61,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10, QuizType.TransliterationToKatakana)]
-        public void E2K_GenerateQuiz_EachItemHasNextQuestionId(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateQuiz_EachItemHasNextQuestionId(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
@@ -72,7 +72,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10000, QuizType.TransliterationToKatakana)]
-        public void E2K_GenerateQuiz_EachNextQuestionIdIsUnique(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateQuiz_EachNextQuestionIdIsUnique(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<int, int> dic = new Dictionary<int, int>();
@@ -88,7 +88,7 @@ namespace SyllabaryQuizGenerator.Tests
         [DataRow(100, QuizType.TransliterationToKatakana)]
         [DataRow(1000, QuizType.TransliterationToKatakana)]
         [DataRow(10000, QuizType.TransliterationToKatakana)]
-        public void E2K_GenerateQuiz_LastItemNextQuizItemIdIsZero(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateQuiz_LastItemNextQuizItemIdIsZero(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType).ToList();
             var itemsWithNextQuizItemIdOfZero = quizItems.Where(x => x.NextQuizItemId == 0).ToList();
@@ -98,7 +98,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10, QuizType.TransliterationToKatakana)]
-        public void E2K_GenerateQuiz_QuestionIsNotEmpty(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateQuiz_QuestionIsNotEmpty(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
@@ -109,7 +109,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10, QuizType.TransliterationToKatakana)]
-        public void E2K_GenerateQuiz_QuestionIsEnglish(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateQuiz_QuestionIsEnglish(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
@@ -122,7 +122,7 @@ namespace SyllabaryQuizGenerator.Tests
         [DataRow(10, QuizType.TransliterationToKatakana)]
         [DataRow(30, QuizType.TransliterationToKatakana)]
         [DataRow(40, QuizType.TransliterationToKatakana)]
-        public void E2K_GenerateQuiz_QuestionsAreRandomForSmallTestQuantities(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateQuiz_QuestionsAreRandomForSmallTestQuantities(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<string, int> dic = new Dictionary<string, int>();
@@ -140,7 +140,7 @@ namespace SyllabaryQuizGenerator.Tests
         [DataRow(100, QuizType.TransliterationToKatakana)]
         [DataRow(1000, QuizType.TransliterationToKatakana)]
         [DataRow(10000, QuizType.TransliterationToKatakana)]
-        public void E2K_GenerateQuiz_QuestionsAreRandomForLargeTestQuantities(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateQuiz_QuestionsAreRandomForLargeTestQuantities(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<string, int> dic = new Dictionary<string, int>();
@@ -157,7 +157,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10, QuizType.TransliterationToKatakana)]
-        public void E2K_GenerateQuiz_CorrectAnswerIsNotEmpty(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateQuiz_CorrectAnswerIsNotEmpty(int numberOfItems, QuizType quizType)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
@@ -168,7 +168,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10, QuizType.TransliterationToKatakana)]
-        public void E2K_GenerateQuiz_CorrectAnswerIsKatakana(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateQuiz_CorrectAnswerIsKatakana(int numberOfItems, QuizType quizType)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
@@ -179,7 +179,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10000, QuizType.TransliterationToKatakana)]
-        public void E2K_GenerateQuiz_CorrectAnswerIsCorrectKatakana(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateQuiz_CorrectAnswerIsCorrectKatakana(int numberOfItems, QuizType quizType)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
@@ -190,7 +190,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(10000, QuizType.TransliterationToKatakana)]
-        public void E2K_GenerateQuiz_OnlyOneOfTheAnswersIsCorrect(int numberOfItems, QuizType quizType)
+        public void T2K_GenerateQuiz_OnlyOneOfTheAnswersIsCorrect(int numberOfItems, QuizType quizType)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
@@ -206,7 +206,7 @@ namespace SyllabaryQuizGenerator.Tests
         [DataRow(10000, QuizType.TransliterationToKatakana, 4)]
         [DataRow(10000, QuizType.TransliterationToKatakana, 5)]
         [DataRow(10000, QuizType.TransliterationToKatakana, 6)]
-        public void E2K_GenerateQuiz_CanAdjustTheNumberOfPossibleAnswers(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        public void T2K_GenerateQuiz_CanAdjustTheNumberOfPossibleAnswers(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
@@ -223,7 +223,7 @@ namespace SyllabaryQuizGenerator.Tests
         [DataRow(10, QuizType.TransliterationToKatakana, 7)]
         [DataRow(10, QuizType.TransliterationToKatakana, 100)]
         [ExpectedException(typeof(ArgumentException))]
-        public void E2K_AskToGenerateInappropriateNumberOfPossibleAnswers_ReceiveException(int numberOfItems, QuizType quizType, int numberOfPossibleAnswers)
+        public void T2K_AskToGenerateInappropriateNumberOfPossibleAnswers_ReceiveException(int numberOfItems, QuizType quizType, int numberOfPossibleAnswers)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType, numberOfPossibleAnswers);
         }
@@ -234,7 +234,7 @@ namespace SyllabaryQuizGenerator.Tests
         [DataRow(50, QuizType.TransliterationToKatakana, 4)]
         [DataRow(50, QuizType.TransliterationToKatakana, 5)]
         [DataRow(50, QuizType.TransliterationToKatakana, 6)]
-        public void E2K_GenerateQuiz_CorrectAnswerInRandomPosition(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        public void T2K_GenerateQuiz_CorrectAnswerInRandomPosition(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
             Dictionary<int, int> dic = new Dictionary<int, int>();
@@ -256,7 +256,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(100, QuizType.TransliterationToKatakana, 6)]
-        public void E2K_GenerateQuiz_PossibleAnswersAreNotEmpty(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        public void T2K_GenerateQuiz_PossibleAnswersAreNotEmpty(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
@@ -269,7 +269,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(100, QuizType.TransliterationToKatakana, 6)]
-        public void E2K_GenerateQuiz_PossibleAnswersAreKatakana(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        public void T2K_GenerateQuiz_PossibleAnswersAreKatakana(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
@@ -282,7 +282,7 @@ namespace SyllabaryQuizGenerator.Tests
 
         [TestMethod]
         [DataRow(100, QuizType.TransliterationToKatakana, 6)]
-        public void E2K_GenerateQuiz_PossibleAnswersNotRepeating(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        public void T2K_GenerateQuiz_PossibleAnswersNotRepeating(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
