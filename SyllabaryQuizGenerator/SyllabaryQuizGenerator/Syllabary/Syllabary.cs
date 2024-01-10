@@ -160,6 +160,33 @@
             return answers;
         }
 
+        public static string GetRandomHiragana()
+        {
+            Random rnd = new Random();
+            return hiragana[rnd.Next(hiragana.Count())];
+        }
+
+        public static IEnumerable<string> GenerateHiraganaAnswers(string correctAnswer, int possibleAnswers)
+        {
+            string[] answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToArray();
+            Random rnd = new Random();
+            int correctPosition = rnd.Next(possibleAnswers);
+            for (int i = 0; i < possibleAnswers; i++)
+            {
+                if (i == correctPosition)
+                    continue;
+
+                string candidate = correctAnswer;
+                do
+                {
+                    candidate = GetRandomHiragana();
+                } while (answers.Contains(candidate));
+
+                answers[i] = candidate;
+            }
+            return answers;
+        }
+
         public static string GetRandomTransliteration()
         {
             Random rnd = new Random();

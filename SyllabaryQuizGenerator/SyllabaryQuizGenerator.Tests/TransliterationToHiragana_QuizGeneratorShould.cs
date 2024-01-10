@@ -107,7 +107,7 @@
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
-                Assert.IsTrue(Syllabary.IsKatakana(qi.Question!), $"Expected Question in Katakana, but received {qi.Question}: Question Id: {qi.Id}");
+                Assert.IsTrue(Syllabary.IsTransliteration(qi.Question!), $"Expected Question in transliteration, but received {qi.Question}: Question Id: {qi.Id}");
             }
         }
 
@@ -166,7 +166,7 @@
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsTransliteration(q.CorrectAnswer), $"Correct answer is not Katakana for an E2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsHiragana(q.CorrectAnswer), $"Correct answer is not Hiragana for a T2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
             }
         }
 
@@ -177,7 +177,7 @@
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsTransliteration(q.CorrectAnswer), $"Correct answer is not Transliteration for an E2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsHiragana(q.CorrectAnswer), $"Correct answer is not Hiragana for a T2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
             }
         }
 
@@ -268,8 +268,8 @@
 
             foreach (var q in test)
             {
-                var countNonKatakana = q.Answers.Where(x => !Syllabary.IsTransliteration(x)).Count();
-                Assert.AreEqual(0, countNonKatakana, $"{countNonKatakana} non-Transliteration possible answers ");
+                var countNonHiragana = q.Answers.Where(x => !Syllabary.IsHiragana(x)).Count();
+                Assert.AreEqual(0, countNonHiragana, $"{countNonHiragana} non-Hiragana possible answers ");
             }
         }
 
