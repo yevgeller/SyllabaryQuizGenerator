@@ -41,7 +41,30 @@
             {
                 return AssignTransliterationToHiraganaQuestions(items, numberOfPossibleAnswers);
             }
+            if (quizType == QuizType.HiraganaToKatakana)
+            {
+                return AssignHiraganaToKatakanaQuestions(items, numberOfPossibleAnswers);
+            }
             return items;
+        }
+
+        private List<QuizItem> AssignHiraganaToKatakanaQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
+        {
+            Random rnd = new Random();
+
+            var allChars = Syllabary.GetSyllabaryCharacters();
+
+            foreach (var i in items)
+            {
+                SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
+                i.Question = ch.Transliteration;
+                i.CorrectAnswer = ch.Katakana;
+                i.OrdinalNumber = ch.OrdinalNumber;
+                //i.Answers = Syllabary.GenerateKatakanaAnswers(ch.Katakana, numberOfPossibleAnswers).ToList(); 
+                i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomKatakana, ch.Katakana, numberOfPossibleAnswers).ToList();
+            }
+
+            return items
         }
 
         private List<QuizItem> AssignTransliterationToKatakanaQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
