@@ -187,7 +187,7 @@
             return answers;
         }
 
-        public static IEnumerable<string> GenerateAnswers(Func<SyllabaryType, string> GetRandomCharacter, SyllabaryType syllabaryType, string correctAnswer, int possibleAnswers)
+        public static IEnumerable<string> GenerateAnswers(Func<string> GetRandomCharacter, string correctAnswer, int possibleAnswers)
         {
             string[] answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToArray();
             Random rnd = new Random();
@@ -200,7 +200,7 @@
                 string candidate = correctAnswer;
                 do
                 {
-                    candidate = GetRandomCharacter(syllabaryType);
+                    candidate = GetRandomCharacter();
                 } while (answers.Contains(candidate));
 
                 answers[i] = candidate;
