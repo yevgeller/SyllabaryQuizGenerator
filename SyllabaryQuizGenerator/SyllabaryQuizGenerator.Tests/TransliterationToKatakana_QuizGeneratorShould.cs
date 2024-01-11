@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SyllabaryQuizGenerator.Tests
 {
-    //English to Katakana specific tests
+    //Transliteration to Katakana specific tests
     public partial class QuizGeneratorShould
     {
         [DataRow(3, QuizType.TransliterationToKatakana)]
