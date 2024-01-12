@@ -102,12 +102,12 @@
 
         [TestMethod]
         [DataRow(10, QuizType.KatakanaToHiragana)]
-        public void K2H_GenerateQuiz_QuestionIsHiragana(int numberOfItems, QuizType quizType)
+        public void K2H_GenerateQuiz_QuestionIsKatakana(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
-                Assert.IsTrue(Syllabary.IsHiragana(qi.Question!), $"Expected Question in Hiragana, but received {qi.Question}: Question Id: {qi.Id}");
+                Assert.IsTrue(Syllabary.IsKatakana(qi.Question!), $"Expected Question in Katakana, but received {qi.Question}: Question Id: {qi.Id}");
             }
         }
 
@@ -161,23 +161,23 @@
 
         [TestMethod]
         [DataRow(10, QuizType.KatakanaToHiragana)]
-        public void K2H_GenerateQuiz_CorrectAnswerIsTransliteration(int numberOfItems, QuizType quizType)
+        public void K2H_GenerateQuiz_CorrectAnswerIsHiragana(int numberOfItems, QuizType quizType)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsTransliteration(q.CorrectAnswer), $"Correct answer is not Transliteration for an K2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsHiragana(q.CorrectAnswer), $"Correct answer is not Hiragana for an K2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
             }
         }
 
         [TestMethod]
         [DataRow(10000, QuizType.KatakanaToHiragana)]
-        public void K2H_GenerateQuiz_CorrectAnswerIsCorrectTransliteration(int numberOfItems, QuizType quizType)
+        public void K2H_GenerateQuiz_CorrectAnswerIsCorrectHiragana(int numberOfItems, QuizType quizType)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsTransliteration(q.CorrectAnswer), $"Correct answer is not Transliteration for an K2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsHiragana(q.CorrectAnswer), $"Correct answer is not Hiragana for an K2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
             }
         }
 
@@ -262,14 +262,14 @@
 
         [TestMethod]
         [DataRow(100, QuizType.KatakanaToHiragana, 6)]
-        public void K2H_GenerateQuiz_PossibleAnswersAreTransliteration(int numberOfItems, QuizType quizType, int possibleAnswersQty)
+        public void K2H_GenerateQuiz_PossibleAnswersAreHiragana(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
             var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
             foreach (var q in test)
             {
-                var countWrongSyllabary = q.Answers.Where(x => !Syllabary.IsTransliteration(x)).Count();
-                Assert.AreEqual(0, countWrongSyllabary, $"{countWrongSyllabary} non-Transliteration possible answers ");
+                var countWrongSyllabary = q.Answers.Where(x => !Syllabary.IsHiragana(x)).Count();
+                Assert.AreEqual(0, countWrongSyllabary, $"{countWrongSyllabary} non-Hiragana possible answers ");
             }
         }
 
