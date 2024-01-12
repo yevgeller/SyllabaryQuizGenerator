@@ -113,7 +113,7 @@ namespace SyllabaryQuizGenerator.Tests
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
-                Assert.IsTrue(Syllabary.IsHiragana(qi.Question!), $"Expected Question in Katakana, but received {qi.Question}: Question Id: {qi.Id}");
+                Assert.IsTrue(Syllabary.IsHiragana(qi.Question!), $"Expected Question in Hiragana, but received {qi.Question}: Question Id: {qi.Id}");
             }
         }
 

@@ -57,14 +57,14 @@
             foreach (var i in items)
             {
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
-                i.Question = ch.Transliteration;
+                i.Question = ch.Hiragana;
                 i.CorrectAnswer = ch.Katakana;
                 i.OrdinalNumber = ch.OrdinalNumber;
                 //i.Answers = Syllabary.GenerateKatakanaAnswers(ch.Katakana, numberOfPossibleAnswers).ToList(); 
                 i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomKatakana, ch.Katakana, numberOfPossibleAnswers).ToList();
             }
 
-            return items
+            return items;
         }
 
         private List<QuizItem> AssignTransliterationToKatakanaQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
