@@ -62,9 +62,9 @@
             {
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
                 i.Question = ch.Hiragana;
-                i.CorrectAnswer = ch.Katakana;
+                i.CorrectAnswer = ch.Transliteration;
                 i.OrdinalNumber = ch.OrdinalNumber;
-                i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomKatakana, ch.Katakana, numberOfPossibleAnswers).ToList();
+                i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomTransliteration, ch.Transliteration, numberOfPossibleAnswers).ToList();
             }
 
             return items;
