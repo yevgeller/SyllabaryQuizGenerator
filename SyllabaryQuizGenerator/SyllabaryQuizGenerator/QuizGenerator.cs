@@ -49,7 +49,16 @@
             {
                 return AssignHiraganaToTransliterationQuestions(items, numberOfPossibleAnswers);
             }
+            if(quizType == QuizType.KatakanaToHiragana)
+            {
+                return AssignKatakanaToHiraganaQuestions(items, numberOfPossibleAnswers);
+            }
             return items;
+        }
+
+        private List<QuizItem> AssignKatakanaToHiraganaQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
+        {
+            throw new NotImplementedException();
         }
 
         private List<QuizItem> AssignHiraganaToTransliterationQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
