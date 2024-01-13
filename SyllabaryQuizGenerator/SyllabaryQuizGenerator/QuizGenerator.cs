@@ -58,7 +58,20 @@
 
         private List<QuizItem> AssignKatakanaToHiraganaQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
         {
-            throw new NotImplementedException();
+            Random rnd = new Random();
+
+            var allChars = Syllabary.GetSyllabaryCharacters();
+
+            foreach (var i in items)
+            {
+                SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
+                i.Question = ch.Katakana;
+                i.CorrectAnswer = ch.Hiragana;
+                i.OrdinalNumber = ch.OrdinalNumber;
+                i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomTransliteration, ch.Hiragana, numberOfPossibleAnswers).ToList();
+            }
+
+            return items;
         }
 
         private List<QuizItem> AssignHiraganaToTransliterationQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
