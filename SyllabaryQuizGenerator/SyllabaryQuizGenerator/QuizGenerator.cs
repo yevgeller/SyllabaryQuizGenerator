@@ -65,12 +65,14 @@
             for(int i = 0; i < numberOfPossibleAnswers; i++)
             {
                 Random rnd = new Random();
-                QuizType type = (QuizType)rnd.Next(6);
-                List<QuizItem> thisOneItemList = new List<QuizItem> { new QuizItem { Id = items[i].Id, NextQuizItemId = items[i].Id } 
+                QuizType thisOneItemType = (QuizType)rnd.Next(6);
+                List<QuizItem> thisOneItemList = new List<QuizItem> 
+                { 
+                    new QuizItem { Id = items[i].Id, NextQuizItemId = items[i].Id } 
                 };
-                List<QuizItem> thisOneQuestion = 
+                List<QuizItem> thisOneQuestion = AssignQuestions(thisOneItemList, thisOneItemType, numberOfPossibleAnswers);
 
-                items.Add(AssignQuestions(new List<QuizItem>(), type, 4);
+                items.Add(thisOneQuestion.First());
             }
 
             return items;
