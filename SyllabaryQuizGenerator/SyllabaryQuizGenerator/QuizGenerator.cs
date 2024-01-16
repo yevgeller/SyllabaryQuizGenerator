@@ -53,6 +53,26 @@
             {
                 return AssignKatakanaToHiraganaQuestions(items, numberOfPossibleAnswers);
             }
+            if(quizType == QuizType.Random)
+            {
+                return AssignRandomQuestions(items, numberOfPossibleAnswers);
+            }
+            return items;
+        }
+
+        private List<QuizItem> AssignRandomQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
+        {
+            for(int i = 0; i < numberOfPossibleAnswers; i++)
+            {
+                Random rnd = new Random();
+                QuizType type = (QuizType)rnd.Next(6);
+                List<QuizItem> thisOneItemList = new List<QuizItem> { new QuizItem { Id = items[i].Id, NextQuizItemId = items[i].Id } 
+                };
+                List<QuizItem> thisOneQuestion = 
+
+                items.Add(AssignQuestions(new List<QuizItem>(), type, 4);
+            }
+
             return items;
         }
 
