@@ -75,7 +75,6 @@ namespace SyllabaryQuizGenerator.Tests
             foreach (string k in katakanaSyllables)
             {
                 var list = Syllabary.GenerateAnswers(Syllabary.GetRandomKatakana, k, 6);
-                //var list = Syllabary.GenerateKatakanaAnswers(k.ToString(), 6);
                 Dictionary<string, int> dic = new Dictionary<string, int>();
 
                 foreach (var i in list)
@@ -105,10 +104,7 @@ namespace SyllabaryQuizGenerator.Tests
         {
             foreach (string t in translit)
             {
-
-                //var list = Syllabary.GenerateAnswers(Syllabary.GetRandomKatakana, k, 6);
                 var list = Syllabary.GenerateAnswers(Syllabary.GetRandomTransliteration, t, 6);
-                //var list = Syllabary.GenerateTranslitAnswers(t, 6);
                 Dictionary<string, int> dic = new Dictionary<string, int>();
 
                 foreach (var i in list)
@@ -125,9 +121,7 @@ namespace SyllabaryQuizGenerator.Tests
         {
             foreach (string t in translit)
             {
-
                 var list = Syllabary.GenerateAnswers(Syllabary.GetRandomTransliteration, t, 6);
-                //var list = Syllabary.GenerateTranslitAnswers(t, 6);
                 foreach(var i in list)
                 {
                     Assert.IsTrue(translit.Contains(i), $"{i} is not a transliteration character");

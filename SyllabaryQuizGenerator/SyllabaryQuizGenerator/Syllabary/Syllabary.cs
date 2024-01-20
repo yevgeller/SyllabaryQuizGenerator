@@ -139,53 +139,11 @@
             return katakana[rnd.Next(katakana.Count())];
         }
 
-        //public static IEnumerable<string> GenerateTranslitAnswers(string correctAnswer, int possibleAnswers)
-        //{
-        //    string[] answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToArray();
-        //    Random rnd = new Random();
-        //    int correctPosition = rnd.Next(possibleAnswers);
-        //    for (int i = 0; i < possibleAnswers; i++)
-        //    {
-        //        if (i == correctPosition)
-        //            continue;
-
-        //        string candidate = correctAnswer;
-        //        do
-        //        {
-        //            candidate = GetRandomTransliteration();
-        //        } while (answers.Contains(candidate));
-
-        //        answers[i] = candidate;
-        //    }
-        //    return answers;
-        //}
-
         public static string GetRandomHiragana()
         {
             Random rnd = new Random();
             return hiragana[rnd.Next(hiragana.Count())];
         }
-
-        //public static IEnumerable<string> GenerateHiraganaAnswers(string correctAnswer, int possibleAnswers)
-        //{
-        //    string[] answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToArray();
-        //    Random rnd = new Random();
-        //    int correctPosition = rnd.Next(possibleAnswers);
-        //    for (int i = 0; i < possibleAnswers; i++)
-        //    {
-        //        if (i == correctPosition)
-        //            continue;
-
-        //        string candidate = correctAnswer;
-        //        do
-        //        {
-        //            candidate = GetRandomHiragana();
-        //        } while (answers.Contains(candidate));
-
-        //        answers[i] = candidate;
-        //    }
-        //    return answers;
-        //}
 
         public static IEnumerable<string> GenerateAnswers(Func<string> GetRandomCharacter, string correctAnswer, int possibleAnswers)
         {
