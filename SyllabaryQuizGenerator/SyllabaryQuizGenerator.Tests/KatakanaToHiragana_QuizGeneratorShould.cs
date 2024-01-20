@@ -52,6 +52,17 @@
             }
         }
 
+        [DataRow(100, QuizType.KatakanaToHiragana)]
+        [TestMethod]
+        public void K2H_GenerateListOfQuizItems_EachQuizItemHasQuestionType(int numberOfItems, QuizType quizType)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            foreach (var qi in quizItems)
+            {
+                Assert.IsTrue(qi.QuestionType == QuizType.KatakanaToHiragana, $"QuestionType is {qi.QuestionType}, expected K2H");
+            }
+        }
+
         [TestMethod]
         [DataRow(10, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_EachItemHasNextQuestionId(int numberOfItems, QuizType quizType)

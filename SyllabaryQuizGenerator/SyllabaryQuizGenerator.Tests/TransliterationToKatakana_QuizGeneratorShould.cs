@@ -59,6 +59,17 @@ namespace SyllabaryQuizGenerator.Tests
             }
         }
 
+        [DataRow(100, QuizType.TransliterationToKatakana)]
+        [TestMethod]
+        public void T2K_GenerateListOfQuizItems_EachQuizItemHasQuestionType(int numberOfItems, QuizType quizType)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            foreach (var qi in quizItems)
+            {
+                Assert.IsTrue(qi.QuestionType == QuizType.TransliterationToKatakana, $"QuestionType is {qi.QuestionType}, expected T2K");
+            }
+        }
+
         [TestMethod]
         [DataRow(10, QuizType.TransliterationToKatakana)]
         public void T2K_GenerateQuiz_EachItemHasNextQuestionId(int numberOfItems, QuizType quizType)
