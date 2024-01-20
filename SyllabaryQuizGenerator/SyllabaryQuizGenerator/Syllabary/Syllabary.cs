@@ -139,26 +139,26 @@
             return katakana[rnd.Next(katakana.Count())];
         }
 
-        public static IEnumerable<string> GenerateTranslitAnswers(string correctAnswer, int possibleAnswers)
-        {
-            string[] answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToArray();
-            Random rnd = new Random();
-            int correctPosition = rnd.Next(possibleAnswers);
-            for (int i = 0; i < possibleAnswers; i++)
-            {
-                if (i == correctPosition)
-                    continue;
+        //public static IEnumerable<string> GenerateTranslitAnswers(string correctAnswer, int possibleAnswers)
+        //{
+        //    string[] answers = Enumerable.Repeat(correctAnswer, possibleAnswers).ToArray();
+        //    Random rnd = new Random();
+        //    int correctPosition = rnd.Next(possibleAnswers);
+        //    for (int i = 0; i < possibleAnswers; i++)
+        //    {
+        //        if (i == correctPosition)
+        //            continue;
 
-                string candidate = correctAnswer;
-                do
-                {
-                    candidate = GetRandomTransliteration();
-                } while (answers.Contains(candidate));
+        //        string candidate = correctAnswer;
+        //        do
+        //        {
+        //            candidate = GetRandomTransliteration();
+        //        } while (answers.Contains(candidate));
 
-                answers[i] = candidate;
-            }
-            return answers;
-        }
+        //        answers[i] = candidate;
+        //    }
+        //    return answers;
+        //}
 
         public static string GetRandomHiragana()
         {
