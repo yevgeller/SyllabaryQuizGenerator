@@ -52,6 +52,17 @@
             }
         }
 
+        [DataRow(100, QuizType.HiraganaToTransliteration)]
+        [TestMethod]
+        public void H2T_GenerateListOfQuizItems_EachQuizItemHasQuestionType(int numberOfItems, QuizType quizType)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            foreach (var qi in quizItems)
+            {
+                Assert.IsTrue(qi.QuestionType == QuizType.HiraganaToTransliteration, $"QuestionType is {qi.QuestionType}, expected H2T");
+            }
+        }
+
         [TestMethod]
         [DataRow(10, QuizType.HiraganaToTransliteration)]
         public void H2T_GenerateQuiz_EachItemHasNextQuestionId(int numberOfItems, QuizType quizType)

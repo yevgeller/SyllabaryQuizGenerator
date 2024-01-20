@@ -47,6 +47,17 @@ namespace SyllabaryQuizGenerator.Tests
             }
         }
 
+        [DataRow(100, QuizType.KatakanaToTransliteration)]
+        [TestMethod]
+        public void H2K_GenerateListOfQuizItems_EachQuizItemHasQuestionType(int numberOfItems, QuizType quizType)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            foreach (var qi in quizItems)
+            {
+                Assert.IsTrue(qi.QuestionType == QuizType.HiraganaToKatakana, $"QuestionType is {qi.QuestionType}, expected H2K");
+            }
+        }
+
         [DataRow(10000, QuizType.HiraganaToKatakana)]
         [TestMethod]
         public void H2K_GenerateListOfQuizItems_EachHasAnOrdinalNumber(int numberOfItems, QuizType quizType)
