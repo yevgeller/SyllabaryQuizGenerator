@@ -47,7 +47,7 @@ namespace SyllabaryQuizGenerator.Tests
             }
         }
 
-        [DataRow(100, QuizType.KatakanaToTransliteration)]
+        [DataRow(100, QuizType.HiraganaToKatakana)]
         [TestMethod]
         public void H2K_GenerateListOfQuizItems_EachQuizItemHasQuestionType(int numberOfItems, QuizType quizType)
         {

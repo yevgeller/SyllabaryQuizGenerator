@@ -152,7 +152,7 @@ namespace SyllabaryQuizGenerator.Tests
         }
 
         [TestMethod]
-        [DataRow(10000, QuizType.TransliterationToHiragana)]
+        [DataRow(10000, QuizType.HiraganaToTransliteration)]
         public void RND_GenerateQuiz_EnoughH2TQuestions(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
@@ -165,7 +165,7 @@ namespace SyllabaryQuizGenerator.Tests
         }
 
         [TestMethod]
-        [DataRow(10000, QuizType.TransliterationToKatakana)]
+        [DataRow(10000, QuizType.KatakanaToTransliteration)]
         public void RND_GenerateQuiz_EnoughK2TQuestions(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
@@ -178,8 +178,8 @@ namespace SyllabaryQuizGenerator.Tests
         }
 
         [TestMethod]
-        [DataRow(10000, QuizType.TransliterationToHiragana)]
-        public void RND_GenerateQuiz_EnoughH2TQuestions(int numberOfItems, QuizType quizType)
+        [DataRow(10000, QuizType.HiraganaToKatakana)]
+        public void RND_GenerateQuiz_EnoughH2KQuestions(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
@@ -187,12 +187,12 @@ namespace SyllabaryQuizGenerator.Tests
             double percentage = (cnt / numberOfItems) * 100;
             double expectedMin = 100 / 7;
 
-            Assert.IsTrue(percentage > expectedMin, $"Number of H2T questions ({cnt}/10000) is fewer than the min treshold ({expectedMin}%)");
+            Assert.IsTrue(percentage > expectedMin, $"Number of H2K questions ({cnt}/10000) is fewer than the min treshold ({expectedMin}%)");
         }
 
         [TestMethod]
         [DataRow(10000, QuizType.TransliterationToKatakana)]
-        public void RND_GenerateQuiz_EnoughK2TQuestions(int numberOfItems, QuizType quizType)
+        public void RND_GenerateQuiz_EnoughK2HQuestions(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
@@ -200,7 +200,7 @@ namespace SyllabaryQuizGenerator.Tests
             double percentage = (cnt / numberOfItems) * 100;
             double expectedMin = 100 / 7;
 
-            Assert.IsTrue(percentage > expectedMin, $"Number of K2T questions ({cnt}/10000) is fewer than the min treshold ({expectedMin}%)");
+            Assert.IsTrue(percentage > expectedMin, $"Number of K2H questions ({cnt}/10000) is fewer than the min treshold ({expectedMin}%)");
         }
 
         [TestMethod]
@@ -225,16 +225,16 @@ namespace SyllabaryQuizGenerator.Tests
             }
         }
 
-        [TestMethod]
-        [DataRow(10000, QuizType.Random)]
-        public void RND_GenerateQuiz_CorrectAnswerIsCorrectHiragana(int numberOfItems, QuizType quizType)
-        {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType);
-            foreach (var q in test)
-            {
-                Assert.IsTrue(Syllabary.IsHiragana(q.CorrectAnswer), $"Correct answer is not Hiragana for an RND test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
-            }
-        }
+        //[TestMethod]
+        //[DataRow(10000, QuizType.Random)]
+        //public void RND_GenerateQuiz_CorrectAnswerIsCorrectHiragana(int numberOfItems, QuizType quizType)
+        //{
+        //    var test = qg.GenerateQuizItems(numberOfItems, quizType);
+        //    foreach (var q in test)
+        //    {
+        //        Assert.IsTrue(Syllabary.IsHiragana(q.CorrectAnswer), $"Correct answer is not Hiragana for an RND test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+        //    }
+        //}
 
         [TestMethod]
         [DataRow(10000, QuizType.Random)]
