@@ -126,23 +126,81 @@ namespace SyllabaryQuizGenerator.Tests
         //}
 
         [TestMethod]
-        //[DataRow(100, QuizType.Random)]
-        //[DataRow(1000, QuizType.Random)]
-        [DataRow(10000, QuizType.Random)]
-        public void RND_GenerateQuiz_QuestionsAreRandomForLargeTestQuantities(int numberOfItems, QuizType quizType)
+        [DataRow(10000, QuizType.TransliterationToHiragana)]
+        public void RND_GenerateQuiz_EnoughT2HQuestions(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
-            Dictionary<QuizType, int> dic = new Dictionary<QuizType, int>();
+            int cnt = quizItems.Where(x=>x.QuestionType == quizType).Count();
 
-            foreach (var qi in quizItems)
-            {
-                if (dic.ContainsKey(qi.QuestionType))
-                    dic[qi.QuestionType]++;
-                else
-                    dic.Add(qi.QuestionType, 1);
-            }
+            double percentage = (cnt / numberOfItems) * 100;
+            double expectedMin = 100 / 7;
 
-            Assert.IsTrue(dic.Count() > 35, $"Number of random questions is {dic.Count()} for {numberOfItems} questions requested");
+            Assert.IsTrue(percentage > expectedMin, $"Number of T2H questions ({cnt}/10000) is fewer than the min treshold ({expectedMin}%)");
+        }
+
+        [TestMethod]
+        [DataRow(10000, QuizType.TransliterationToKatakana)]
+        public void RND_GenerateQuiz_EnoughT2KQuestions(int numberOfItems, QuizType quizType)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
+
+            double percentage = (cnt / numberOfItems) * 100;
+            double expectedMin = 100 / 7;
+
+            Assert.IsTrue(percentage > expectedMin, $"Number of T2K questions ({cnt}/10000) is fewer than the min treshold ({expectedMin}%)");
+        }
+
+        [TestMethod]
+        [DataRow(10000, QuizType.TransliterationToHiragana)]
+        public void RND_GenerateQuiz_EnoughH2TQuestions(int numberOfItems, QuizType quizType)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
+
+            double percentage = (cnt / numberOfItems) * 100;
+            double expectedMin = 100 / 7;
+
+            Assert.IsTrue(percentage > expectedMin, $"Number of H2T questions ({cnt}/10000) is fewer than the min treshold ({expectedMin}%)");
+        }
+
+        [TestMethod]
+        [DataRow(10000, QuizType.TransliterationToKatakana)]
+        public void RND_GenerateQuiz_EnoughK2TQuestions(int numberOfItems, QuizType quizType)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
+
+            double percentage = (cnt / numberOfItems) * 100;
+            double expectedMin = 100 / 7;
+
+            Assert.IsTrue(percentage > expectedMin, $"Number of K2T questions ({cnt}/10000) is fewer than the min treshold ({expectedMin}%)");
+        }
+
+        [TestMethod]
+        [DataRow(10000, QuizType.TransliterationToHiragana)]
+        public void RND_GenerateQuiz_EnoughH2TQuestions(int numberOfItems, QuizType quizType)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
+
+            double percentage = (cnt / numberOfItems) * 100;
+            double expectedMin = 100 / 7;
+
+            Assert.IsTrue(percentage > expectedMin, $"Number of H2T questions ({cnt}/10000) is fewer than the min treshold ({expectedMin}%)");
+        }
+
+        [TestMethod]
+        [DataRow(10000, QuizType.TransliterationToKatakana)]
+        public void RND_GenerateQuiz_EnoughK2TQuestions(int numberOfItems, QuizType quizType)
+        {
+            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
+
+            double percentage = (cnt / numberOfItems) * 100;
+            double expectedMin = 100 / 7;
+
+            Assert.IsTrue(percentage > expectedMin, $"Number of K2T questions ({cnt}/10000) is fewer than the min treshold ({expectedMin}%)");
         }
 
         [TestMethod]
