@@ -71,9 +71,18 @@
                     {
                         new QuizItem { Id = items[i].Id, NextQuizItemId = items[i].Id }
                     };
-                List<QuizItem> thisOneQuestion = AssignQuestions(thisOneItemList, thisOneItemType, numberOfPossibleAnswers);
+                QuizItem thisOneQuestion = AssignQuestions(thisOneItemList, thisOneItemType, numberOfPossibleAnswers)[0];
 
-                items.Add(thisOneQuestion.First());
+                items[i].Question = thisOneQuestion.Question;
+                items[i].OrdinalNumber = thisOneQuestion.OrdinalNumber; //= new QuizItem { }
+                for(int answerPosition = 0;  answerPosition < thisOneQuestion.Answers.Count(); answerPosition++)
+                {
+                    items[i].Answers.Add(thisOneQuestion.Answers[answerPosition]);
+                }
+                items[i].QuestionType = thisOneQuestion.QuestionType;
+                items[i].CorrectAnswer = thisOneQuestion.CorrectAnswer;
+                var j = 1;
+                //items.Add(thisOneQuestion.First());
             }
 
             return items;
