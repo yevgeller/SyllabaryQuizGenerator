@@ -91,6 +91,7 @@
                 i.CorrectAnswer = ch.Hiragana;
                 i.OrdinalNumber = ch.OrdinalNumber;
                 i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomHiragana, ch.Hiragana, numberOfPossibleAnswers).ToList();
+                i.QuestionType = QuizType.KatakanaToHiragana;
             }
 
             return items;
@@ -109,6 +110,7 @@
                 i.CorrectAnswer = ch.Transliteration;
                 i.OrdinalNumber = ch.OrdinalNumber;
                 i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomTransliteration, ch.Transliteration, numberOfPossibleAnswers).ToList();
+                i.QuestionType = QuizType.HiraganaToTransliteration;
             }
 
             return items;
@@ -127,6 +129,7 @@
                 i.CorrectAnswer = ch.Katakana;
                 i.OrdinalNumber = ch.OrdinalNumber;
                 i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomKatakana, ch.Katakana, numberOfPossibleAnswers).ToList();
+                i.QuestionType = QuizType.HiraganaToKatakana;
             }
 
             return items;
@@ -145,6 +148,7 @@
                 i.CorrectAnswer = ch.Katakana;
                 i.OrdinalNumber = ch.OrdinalNumber;
                 i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomKatakana, ch.Katakana, numberOfPossibleAnswers).ToList();
+                i.QuestionType = QuizType.TransliterationToKatakana;
             }
 
             return items;
