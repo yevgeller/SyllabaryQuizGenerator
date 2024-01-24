@@ -62,17 +62,18 @@
 
         private List<QuizItem> AssignRandomQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
         {
-            for (int i = 0; i < numberOfPossibleAnswers; i++)
+            //for (int i = 0; i < numberOfPossibleAnswers; i++)
+            for(int i = 0; i < items.Count(); i++) 
             {
-                //    Random rnd = new Random();
-                //    QuizType thisOneItemType = (QuizType)rnd.Next(6);
-                //    List<QuizItem> thisOneItemList = new List<QuizItem> 
-                //    { 
-                //        new QuizItem { Id = items[i].Id, NextQuizItemId = items[i].Id } 
-                //    };
-                //    List<QuizItem> thisOneQuestion = AssignQuestions(thisOneItemList, thisOneItemType, numberOfPossibleAnswers);
+                Random rnd = new Random();
+                QuizType thisOneItemType = (QuizType)rnd.Next(6);
+                List<QuizItem> thisOneItemList = new List<QuizItem>
+                    {
+                        new QuizItem { Id = items[i].Id, NextQuizItemId = items[i].Id }
+                    };
+                List<QuizItem> thisOneQuestion = AssignQuestions(thisOneItemList, thisOneItemType, numberOfPossibleAnswers);
 
-                //    items.Add(thisOneQuestion.First());
+                items.Add(thisOneQuestion.First());
             }
 
             return items;
