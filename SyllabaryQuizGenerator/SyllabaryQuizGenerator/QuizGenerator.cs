@@ -66,12 +66,12 @@
             for(int i = 0; i < items.Count(); i++) 
             {
                 Random rnd = new Random();
-                QuizType thisOneItemType = (QuizType)rnd.Next(6);
+                QuizType randomlyPickedQuizType = (QuizType)rnd.Next(6);
                 List<QuizItem> thisOneItemList = new List<QuizItem>
                     {
                         new QuizItem { Id = items[i].Id, NextQuizItemId = items[i].Id }
                     };
-                QuizItem thisOneQuestion = AssignQuestions(thisOneItemList, thisOneItemType, numberOfPossibleAnswers)[0];
+                QuizItem thisOneQuestion = AssignQuestions(thisOneItemList, randomlyPickedQuizType, numberOfPossibleAnswers)[0];
 
                 items[i].Question = thisOneQuestion.Question;
                 items[i].OrdinalNumber = thisOneQuestion.OrdinalNumber; //= new QuizItem { }
