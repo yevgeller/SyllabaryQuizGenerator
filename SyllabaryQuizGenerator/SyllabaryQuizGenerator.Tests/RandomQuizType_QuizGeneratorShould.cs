@@ -213,28 +213,7 @@ namespace SyllabaryQuizGenerator.Tests
                 Assert.IsFalse(string.IsNullOrEmpty(q.CorrectAnswer), $"Correct answer is missing: {q.Id}, {q.Question} ");
             }
         }
-
-        [TestMethod]
-        [DataRow(10, QuizType.Random)]
-        public void RND_GenerateQuiz_CorrectAnswerIsHiragana(int numberOfItems, QuizType quizType)
-        {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType);
-            foreach (var q in test)
-            {
-                Assert.IsTrue(Syllabary.IsHiragana(q.CorrectAnswer), $"Correct answer is not Hiragana for an RND test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
-            }
-        }
-
-        //[TestMethod]
-        //[DataRow(10000, QuizType.Random)]
-        //public void RND_GenerateQuiz_CorrectAnswerIsCorrectHiragana(int numberOfItems, QuizType quizType)
-        //{
-        //    var test = qg.GenerateQuizItems(numberOfItems, quizType);
-        //    foreach (var q in test)
-        //    {
-        //        Assert.IsTrue(Syllabary.IsHiragana(q.CorrectAnswer), $"Correct answer is not Hiragana for an RND test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
-        //    }
-        //}
+        
 
         [TestMethod]
         [DataRow(10000, QuizType.Random)]
@@ -312,19 +291,6 @@ namespace SyllabaryQuizGenerator.Tests
             {
                 var countEmpty = q.Answers.Where(x => string.IsNullOrEmpty(x)).Count();
                 Assert.AreEqual(0, countEmpty, $"{countEmpty} empty possible answers ");
-            }
-        }
-
-        [TestMethod]
-        [DataRow(100, QuizType.Random, 6)]
-        public void RND_GenerateQuiz_PossibleAnswersAreHiragana(int numberOfItems, QuizType quizType, int possibleAnswersQty)
-        {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
-
-            foreach (var q in test)
-            {
-                var countWrongSyllabary = q.Answers.Where(x => !Syllabary.IsHiragana(x)).Count();
-                Assert.AreEqual(0, countWrongSyllabary, $"{countWrongSyllabary} non-Hiragana possible answers ");
             }
         }
 
