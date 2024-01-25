@@ -14,7 +14,7 @@ namespace SyllabaryQuizGenerator
         public int NextQuizItemId { get; set; } = 0;
         public string? Question { get; set; }
         public int OrdinalNumber { get; set; }
-        public QuizType QuestionType { get; set; }
+        public QuizType QuizType { get; set; }
         public string? CorrectAnswer { get; set; }
         public List<string> Answers { get; set; } = new List<string>();
     }
