@@ -60,7 +60,7 @@
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
-                Assert.IsTrue(qi.QuestionType == QuizType.KatakanaToTransliteration, $"QuestionType is {qi.QuestionType}, expected K2T");
+                Assert.IsTrue(qi.QuizType == QuizType.KatakanaToTransliteration, $"QuizType is {qi.QuizType}, expected K2T");
             }
         }
 
