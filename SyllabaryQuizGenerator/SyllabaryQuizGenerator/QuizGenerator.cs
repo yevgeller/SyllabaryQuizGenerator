@@ -62,7 +62,6 @@
 
         private List<QuizItem> AssignRandomQuestions(List<QuizItem> items, int numberOfPossibleAnswers)
         {
-            //for (int i = 0; i < numberOfPossibleAnswers; i++)
             for(int i = 0; i < items.Count(); i++) 
             {
                 Random rnd = new Random();
@@ -74,15 +73,13 @@
                 QuizItem thisOneQuestion = AssignQuestions(thisOneItemList, randomlyPickedQuizType, numberOfPossibleAnswers)[0];
 
                 items[i].Question = thisOneQuestion.Question;
-                items[i].OrdinalNumber = thisOneQuestion.OrdinalNumber; //= new QuizItem { }
+                items[i].OrdinalNumber = thisOneQuestion.OrdinalNumber; 
                 for(int answerPosition = 0;  answerPosition < thisOneQuestion.Answers.Count(); answerPosition++)
                 {
                     items[i].Answers.Add(thisOneQuestion.Answers[answerPosition]);
                 }
                 items[i].QuestionType = thisOneQuestion.QuestionType;
                 items[i].CorrectAnswer = thisOneQuestion.CorrectAnswer;
-                var j = 1;
-                //items.Add(thisOneQuestion.First());
             }
 
             return items;
