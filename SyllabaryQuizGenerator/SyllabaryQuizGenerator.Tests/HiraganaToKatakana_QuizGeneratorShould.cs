@@ -54,7 +54,7 @@ namespace SyllabaryQuizGenerator.Tests
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
-                Assert.IsTrue(qi.QuestionType == QuizType.HiraganaToKatakana, $"QuestionType is {qi.QuestionType}, expected H2K");
+                Assert.IsTrue(qi.QuizType == QuizType.HiraganaToKatakana, $"QuizType is {qi.QuizType}, expected H2K");
             }
         }
 
