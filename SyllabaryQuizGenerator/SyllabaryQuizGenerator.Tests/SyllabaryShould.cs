@@ -28,7 +28,7 @@ namespace SyllabaryQuizGenerator.Tests
         [TestMethod]
         public void All_HaveOrdinalNumbers()
         {
-            Assert.IsFalse(Syllabary.GetSyllabaryCharacters().Any(x=>x.OrdinalNumber < 1));
+            Assert.IsFalse(Syllabary.GetSyllabaryCharacters().Any(x=>x.UniqueId < 1));
         }
 
         [TestMethod]
