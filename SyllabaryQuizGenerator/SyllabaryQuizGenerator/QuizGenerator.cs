@@ -96,7 +96,7 @@
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
                 i.Question = ch.Katakana;
                 i.CorrectAnswer = ch.Hiragana;
-                i.OrdinalNumber = ch.OrdinalNumber;
+                i.OrdinalNumber = ch.UniqueId;
                 i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomHiragana, ch.Hiragana, numberOfPossibleAnswers).ToList();
                 i.QuizType = QuizType.KatakanaToHiragana;
             }
@@ -115,7 +115,7 @@
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
                 i.Question = ch.Hiragana;
                 i.CorrectAnswer = ch.Transliteration;
-                i.OrdinalNumber = ch.OrdinalNumber;
+                i.OrdinalNumber = ch.UniqueId;
                 i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomTransliteration, ch.Transliteration, numberOfPossibleAnswers).ToList();
                 i.QuizType = QuizType.HiraganaToTransliteration;
             }
@@ -134,7 +134,7 @@
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
                 i.Question = ch.Hiragana;
                 i.CorrectAnswer = ch.Katakana;
-                i.OrdinalNumber = ch.OrdinalNumber;
+                i.OrdinalNumber = ch.UniqueId;
                 i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomKatakana, ch.Katakana, numberOfPossibleAnswers).ToList();
                 i.QuizType = QuizType.HiraganaToKatakana;
             }
@@ -153,7 +153,7 @@
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
                 i.Question = ch.Transliteration;
                 i.CorrectAnswer = ch.Katakana;
-                i.OrdinalNumber = ch.OrdinalNumber;
+                i.OrdinalNumber = ch.UniqueId;
                 i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomKatakana, ch.Katakana, numberOfPossibleAnswers).ToList();
                 i.QuizType = QuizType.TransliterationToKatakana;
             }
@@ -172,7 +172,7 @@
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
                 i.Question = ch.Katakana;
                 i.CorrectAnswer = ch.Transliteration;
-                i.OrdinalNumber = ch.OrdinalNumber;
+                i.OrdinalNumber = ch.UniqueId;
                 i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomTransliteration, ch.Transliteration, numberOfPossibleAnswers).ToList();
                 i.QuizType = QuizType.KatakanaToTransliteration;
             }
@@ -190,7 +190,7 @@
                 SyllabaryCharacter ch = allChars[rnd.Next(allChars.Count())];
                 i.Question = ch.Transliteration;
                 i.CorrectAnswer = ch.Hiragana;
-                i.OrdinalNumber = ch.OrdinalNumber;
+                i.OrdinalNumber = ch.UniqueId;
                 i.Answers = Syllabary.GenerateAnswers(Syllabary.GetRandomHiragana, ch.Hiragana,  numberOfPossibleAnswers).ToList();
                 i.QuizType = QuizType.TransliterationToHiragana;
             }
