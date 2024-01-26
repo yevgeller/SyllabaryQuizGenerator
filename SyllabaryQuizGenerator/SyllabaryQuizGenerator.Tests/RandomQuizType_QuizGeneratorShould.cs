@@ -130,7 +130,7 @@ namespace SyllabaryQuizGenerator.Tests
         public void RND_GenerateQuiz_EnoughT2HQuestions(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
-            int cnt = quizItems.Where(x=>x.QuestionType == quizType).Count();
+            int cnt = quizItems.Where(x=>x.QuizType == quizType).Count();
 
             double percentage = (cnt / numberOfItems) * 100;
             double expectedMin = 100 / 7;
@@ -143,7 +143,7 @@ namespace SyllabaryQuizGenerator.Tests
         public void RND_GenerateQuiz_EnoughT2KQuestions(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
-            int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
+            int cnt = quizItems.Where(x => x.QuizType == quizType).Count();
 
             double percentage = (cnt / numberOfItems) * 100;
             double expectedMin = 100 / 7;
@@ -156,7 +156,7 @@ namespace SyllabaryQuizGenerator.Tests
         public void RND_GenerateQuiz_EnoughH2TQuestions(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
-            int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
+            int cnt = quizItems.Where(x => x.QuizType == quizType).Count();
 
             double percentage = (cnt / numberOfItems) * 100;
             double expectedMin = 100 / 7;
@@ -169,7 +169,7 @@ namespace SyllabaryQuizGenerator.Tests
         public void RND_GenerateQuiz_EnoughK2TQuestions(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
-            int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
+            int cnt = quizItems.Where(x => x.QuizType == quizType).Count();
 
             double percentage = (cnt / numberOfItems) * 100;
             double expectedMin = 100 / 7;
@@ -182,7 +182,7 @@ namespace SyllabaryQuizGenerator.Tests
         public void RND_GenerateQuiz_EnoughH2KQuestions(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
-            int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
+            int cnt = quizItems.Where(x => x.QuizType == quizType).Count();
 
             double percentage = (cnt / numberOfItems) * 100;
             double expectedMin = 100 / 7;
@@ -195,7 +195,7 @@ namespace SyllabaryQuizGenerator.Tests
         public void RND_GenerateQuiz_EnoughK2HQuestions(int numberOfItems, QuizType quizType)
         {
             List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
-            int cnt = quizItems.Where(x => x.QuestionType == quizType).Count();
+            int cnt = quizItems.Where(x => x.QuizType == quizType).Count();
 
             double percentage = (cnt / numberOfItems) * 100;
             double expectedMin = 100 / 7;
