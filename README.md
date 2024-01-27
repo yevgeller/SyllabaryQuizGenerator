@@ -42,7 +42,7 @@ To get the list of quiz items, call the following method on `SyllabaryQuizGenera
 
 ```C#
 public List<QuizItem> GenerateQuizItems(int number,
-                                        QuizType quizType = QuizType.EnglishToKatakana,
+                                        QuizType quizType = QuizType.TransliterationToKatakana,
                                         int numberOfPossibleAnswers = 4)
 ```
 
