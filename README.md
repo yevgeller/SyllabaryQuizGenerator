@@ -28,10 +28,10 @@ Output is expected as `List<QuizItem>`, with `QuizItem` having the following ele
     //QuizType enum
     public enum QuizType
     {
-        EnglishToHiragana = 0,
-        EnglishToKatakana,
-        HiraganaToEnglish,
-        KatakanaToEnglish,
+        TransliterationToHiragana = 0,
+        TransliterationToKatakana,
+        HiraganaToTransliteration,
+        KatakanaToTransliteration,
         HiraganaToKatakana,
         KatakanaToHiragana,
         Random
