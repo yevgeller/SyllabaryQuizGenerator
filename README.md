@@ -20,7 +20,8 @@ Output is expected as `List<QuizItem>`, with `QuizItem` having the following ele
         public QuizType QuizType { get; set; } 
         //correct answer
         public string? CorrectAnswer { get; set; } 
-        //list of answers, usually the same type of syllabary (Katakana, Hiragana, or transliteration) as the actual question
+        //list of answers, usually the same type of syllabary
+            //(Katakana, Hiragana, or transliteration) as the actual question
         public List<string> Answers { get; set; } = new List<string>();
     }
 
