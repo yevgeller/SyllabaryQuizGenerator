@@ -14,12 +14,14 @@ Output is expected as `List<QuizItem>`, with `QuizItem` having the following ele
         public int NextQuizItemId { get; set; } = 0;
         //the actual question, string that shows the assignment, what user has to answer correctly
         public string? Question { get; set; }
+        //unique number identifying the Syllabary item
+        public int OrdinalNumber { get; set; }
         //type of question, of type QuizType
-        public QuizType QuestionType { get; set; } 
+        public QuizType QuizType { get; set; } 
         //correct answer
         public string? CorrectAnswer { get; set; } 
         //list of answers, usually the same type of syllabary (Katakana, Hiragana, or transliteration) as the actual question
-        public List<string> Answers { get; set; } = new List<string>(); 
+        public List<string> Answers { get; set; } = new List<string>();
     }
 
     //QuizType enum
