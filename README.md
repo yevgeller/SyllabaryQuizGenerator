@@ -1,8 +1,6 @@
 # SyllabaryQuizGenerator
 Generator for questions and answers of Japanese syllabaries. Includes Katakana, Hiragana and transliteration. 
 
-As of December 1, only Transliteration to Katakana is working. 
-
 Output is expected as `List<QuizItem>`, with `QuizItem` having the following elements:
 
 ```C#
@@ -49,5 +47,4 @@ public List<QuizItem> GenerateQuizItems(int number,
 The project is being published as a package here: https://www.nuget.org/packages/SyllabaryQuizGenerator/
 
 Plans for future:
-- Tests for other enum types
 - Exporting items as JSON
