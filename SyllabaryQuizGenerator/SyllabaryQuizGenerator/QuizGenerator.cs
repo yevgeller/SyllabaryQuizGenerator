@@ -27,6 +27,11 @@
             return items;
         }
 
+        public List<SyllabaryCharacter> GetAllSyllabaryCharacters()
+        {
+            return Syllabary.GetSyllabaryCharacters();
+        }
+
         private List<QuizItem> AssignQuestions(List<QuizItem> items, QuizType quizType, int numberOfPossibleAnswers)
         {
             if(quizType == QuizType.TransliterationToKatakana)
