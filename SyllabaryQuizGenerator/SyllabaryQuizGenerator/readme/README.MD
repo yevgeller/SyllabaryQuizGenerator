@@ -40,3 +40,22 @@ To get the list of quiz items, call the following method on SyllabaryQuizGenerat
     public List<QuizItem> GenerateQuizItems(int number,
                                         QuizType quizType = QuizType.TransliterationToKatakana,
                                         int numberOfPossibleAnswers = 4)
+
+Also available the list of all Syllabary characters by calling this method: 
+        
+        public List<SyllabaryCharacter> GetAllSyllabaryCharacters()
+        {
+            return Syllabary.GetSyllabaryCharacters();
+        }
+
+It returns a list of items of the following type:
+
+    public class SyllabaryCharacter
+    {
+        public string Hiragana { get; set; } 
+        public string Katakana { get; set; }
+        public string Transliteration { get; set; }
+        public int UniqueId { get; set; }
+        public bool IsDigraph { get; set; } = false; //Future expansion
+        public bool IsWithDiacritics { get; set; } = false; //future expansion
+    }
