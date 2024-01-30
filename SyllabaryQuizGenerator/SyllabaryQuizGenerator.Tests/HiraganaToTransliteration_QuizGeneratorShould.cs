@@ -177,7 +177,7 @@
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsTransliteration(q.CorrectAnswer), $"Correct answer is not Transliteration for an H2T test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsTransliteration(q.CorrectAnswer!), $"Correct answer is not Transliteration for an H2T test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
             }
         }
 
@@ -188,7 +188,7 @@
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsTransliteration(q.CorrectAnswer), $"Correct answer is not Transliteration for an H2T test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsTransliteration(q.CorrectAnswer!), $"Correct answer is not Transliteration for an H2T test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
             }
         }
 

@@ -183,7 +183,7 @@ namespace SyllabaryQuizGenerator.Tests
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsKatakana(q.CorrectAnswer), $"Correct answer is not Katakana for an K2E test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsKatakana(q.CorrectAnswer!), $"Correct answer is not Katakana for an K2E test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
             }
         }
 
@@ -194,7 +194,7 @@ namespace SyllabaryQuizGenerator.Tests
             var test = qg.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsKatakana(q.CorrectAnswer), $"Correct answer is not Transliteration for an K2E test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsKatakana(q.CorrectAnswer!), $"Correct answer is not Transliteration for an K2E test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
             }
         }
 
