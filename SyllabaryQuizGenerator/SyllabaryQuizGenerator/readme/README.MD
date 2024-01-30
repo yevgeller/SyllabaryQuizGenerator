@@ -35,7 +35,6 @@ Output is expected as List<QuizItem>, with QuizItem having the following element
         Random
     }
 
-
 To get the list of quiz items, call the following method on SyllabaryQuizGenerator.QuizGenerator
 
     public List<QuizItem> GenerateQuizItems(int number,
