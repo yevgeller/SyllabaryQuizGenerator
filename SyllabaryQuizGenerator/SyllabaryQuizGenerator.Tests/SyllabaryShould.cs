@@ -5,7 +5,7 @@ namespace SyllabaryQuizGenerator.Tests
     [TestClass]
     public class SyllabaryShould
     {
-        List<string> translit, katakanaSyllables, hiraganaSyllables;
+        List<string> translit = new List<string>(), katakanaSyllables = new List<string>(), hiraganaSyllables = new List<string>();
 
         [TestInitialize]
         public void Initialize()
