@@ -3,7 +3,7 @@ namespace SyllabaryQuizGenerator.Tests
     [TestClass]
     public partial class QuizGeneratorShould
     {
-        QuizGenerator qg;
+        QuizGenerator? qg;
         [TestInitialize]
         public void Setup()
         {
@@ -13,7 +13,7 @@ namespace SyllabaryQuizGenerator.Tests
         [TestMethod]
         public void ReturnListOfQuizItems_NotNull()
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems();
+            List<QuizItem> quizItems = qg!.GenerateQuizItems();
             Assert.IsNotNull(quizItems);
         }
         
@@ -24,7 +24,7 @@ namespace SyllabaryQuizGenerator.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void AskToGenerateLessThanThreeQuestions_ReceiveException(int numberOfItems)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems);
         }
     }
 }
