@@ -108,8 +108,10 @@
 
         public static SyllabaryCharacter FindBySomething(string what)
         {
-            return GetSyllabaryCharacters()
-                .Where(x => x.Katakana == what || x.Hiragana == what || x.Transliteration == what).FirstOrDefault();
+            var ret =  GetSyllabaryCharacters().Where(x => x.Katakana == what || x.Hiragana == what || x.Transliteration == what).FirstOrDefault();
+            if(ret != null) return ret;
+
+            return new SyllabaryCharacter();
         }
 
         public static IEnumerable<string> GenerateKatakanaAnswers(string correctAnswer, int possibleAnswers)
