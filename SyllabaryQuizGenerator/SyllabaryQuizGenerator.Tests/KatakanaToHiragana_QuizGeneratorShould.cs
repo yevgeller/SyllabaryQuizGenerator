@@ -10,7 +10,7 @@
         [TestMethod]
         public void K2H_ReturnListOfQuizItems_HasRequestedNumberOfItems(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType);
             Assert.IsNotNull(quizItems);
             Assert.IsTrue(quizItems.Count() == numberOfItems, $"Result does not have {numberOfItems} items.");
         }
@@ -20,7 +20,7 @@
         [DataRow(5, QuizType.KatakanaToHiragana)]
         public void K2H_ReturnListOfQuizItems_EachItemHasId(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType);
 
             foreach (var qi in quizItems)
             {
@@ -32,7 +32,7 @@
         [TestMethod]
         public void K2H_GenerateListOfQuizItems_EachItemHasAUniqueId(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<int, int> dic = new Dictionary<int, int>();
             foreach (var qi in quizItems)
             {
@@ -45,7 +45,7 @@
         [TestMethod]
         public void K2H_GenerateListOfQuizItems_EachHasAnOrdinalNumber(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
                 Assert.IsTrue(qi.OrdinalNumber > 0, $"Ordinal number of question {qi.Question} is null or a zero");
@@ -56,7 +56,7 @@
         [TestMethod]
         public void K2H_GenerateListOfQuizItems_EachQuizItemHasQuestionType(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
                 Assert.IsTrue(qi.QuizType == QuizType.KatakanaToHiragana, $"QuizType is {qi.QuizType}, expected K2H");
@@ -67,7 +67,7 @@
         [DataRow(10, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_EachItemHasNextQuestionId(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
                 Assert.IsTrue(qi.NextQuizItemId >= 0, $"Invalid NextQuizItemId: {qi.NextQuizItemId}");
@@ -78,7 +78,7 @@
         [DataRow(10000, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_EachNextQuestionIdIsUnique(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<int, int> dic = new Dictionary<int, int>();
             foreach (var qi in quizItems)
             {
@@ -94,7 +94,7 @@
         [DataRow(10000, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_LastItemNextQuizItemIdIsZero(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType).ToList();
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType).ToList();
             var itemsWithNextQuizItemIdOfZero = quizItems.Where(x => x.NextQuizItemId == 0).ToList();
             Assert.IsTrue(itemsWithNextQuizItemIdOfZero.Count() == 1);
             Assert.IsTrue(itemsWithNextQuizItemIdOfZero.First().Id == quizItems.Last().Id);
@@ -104,7 +104,7 @@
         [DataRow(10, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_QuestionIsNotEmpty(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
                 Assert.IsFalse(string.IsNullOrEmpty(qi.Question), $"Question property is null or empty: {qi.Id}");
@@ -115,7 +115,7 @@
         [DataRow(10, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_QuestionIsKatakana(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType);
             foreach (var qi in quizItems)
             {
                 Assert.IsTrue(Syllabary.IsKatakana(qi.Question!), $"Expected Question in Katakana, but received {qi.Question}: Question Id: {qi.Id}");
@@ -128,7 +128,7 @@
         [DataRow(40, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_QuestionsAreRandomForSmallTestQuantities(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<string, int> dic = new Dictionary<string, int>();
             foreach (var qi in quizItems)
             {
@@ -146,7 +146,7 @@
         [DataRow(10000, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_QuestionsAreRandomForLargeTestQuantities(int numberOfItems, QuizType quizType)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType);
             Dictionary<string, int> dic = new Dictionary<string, int>();
             foreach (var qi in quizItems)
             {
@@ -163,10 +163,10 @@
         [DataRow(10, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_CorrectAnswerIsNotEmpty(int numberOfItems, QuizType quizType)
         {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType);
+            var test = qg!.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsFalse(string.IsNullOrEmpty(q.CorrectAnswer), $"Correct answer is missing: {q.Id}, {q.Question} ");
+                Assert.IsFalse(string.IsNullOrEmpty(q!.CorrectAnswer!), $"Correct answer is missing: {q.Id}, {q.Question} ");
             }
         }
 
@@ -174,10 +174,10 @@
         [DataRow(10, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_CorrectAnswerIsHiragana(int numberOfItems, QuizType quizType)
         {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType);
+            var test = qg!.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsHiragana(q.CorrectAnswer), $"Correct answer is not Hiragana for an K2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsHiragana(q!.CorrectAnswer!), $"Correct answer is not Hiragana for an K2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
             }
         }
 
@@ -185,10 +185,10 @@
         [DataRow(10000, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_CorrectAnswerIsCorrectHiragana(int numberOfItems, QuizType quizType)
         {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType);
+            var test = qg!.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
-                Assert.IsTrue(Syllabary.IsHiragana(q.CorrectAnswer), $"Correct answer is not Hiragana for an K2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
+                Assert.IsTrue(Syllabary.IsHiragana(q!.CorrectAnswer!), $"Correct answer is not Hiragana for an K2H test: {q.Id}, {q.Question}, {q.CorrectAnswer} ");
             }
         }
 
@@ -196,7 +196,7 @@
         [DataRow(10000, QuizType.KatakanaToHiragana)]
         public void K2H_GenerateQuiz_OnlyOneOfTheAnswersIsCorrect(int numberOfItems, QuizType quizType)
         {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType);
+            var test = qg!.GenerateQuizItems(numberOfItems, quizType);
             foreach (var q in test)
             {
                 var numberCorrect = q.Answers.Where(x => x == q.CorrectAnswer).Count();
@@ -212,7 +212,7 @@
         [DataRow(10000, QuizType.KatakanaToHiragana, 6)]
         public void K2H_GenerateQuiz_CanAdjustTheNumberOfPossibleAnswers(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
+            var test = qg!.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
             foreach (var q in test)
             {
@@ -229,7 +229,7 @@
         [ExpectedException(typeof(ArgumentException))]
         public void K2H_AskToGenerateInappropriateNumberOfPossibleAnswers_ReceiveException(int numberOfItems, QuizType quizType, int numberOfPossibleAnswers)
         {
-            List<QuizItem> quizItems = qg.GenerateQuizItems(numberOfItems, quizType, numberOfPossibleAnswers);
+            List<QuizItem> quizItems = qg!.GenerateQuizItems(numberOfItems, quizType, numberOfPossibleAnswers);
         }
 
         [TestMethod]
@@ -240,7 +240,7 @@
         [DataRow(50, QuizType.KatakanaToHiragana, 6)]
         public void K2H_GenerateQuiz_CorrectAnswerInRandomPosition(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
+            var test = qg!.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
             Dictionary<int, int> dic = new Dictionary<int, int>();
             foreach (var q in test)
             {
@@ -262,7 +262,7 @@
         [DataRow(100, QuizType.KatakanaToHiragana, 6)]
         public void K2H_GenerateQuiz_PossibleAnswersAreNotEmpty(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
+            var test = qg!.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
             foreach (var q in test)
             {
@@ -275,7 +275,7 @@
         [DataRow(100, QuizType.KatakanaToHiragana, 6)]
         public void K2H_GenerateQuiz_PossibleAnswersAreHiragana(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
+            var test = qg!.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
             foreach (var q in test)
             {
@@ -288,7 +288,7 @@
         [DataRow(100, QuizType.KatakanaToHiragana, 6)]
         public void K2H_GenerateQuiz_PossibleAnswersNotRepeating(int numberOfItems, QuizType quizType, int possibleAnswersQty)
         {
-            var test = qg.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
+            var test = qg!.GenerateQuizItems(numberOfItems, quizType, possibleAnswersQty);
 
             foreach (var q in test)
             {
