@@ -18,4 +18,11 @@ namespace SyllabaryQuizGenerator
         public string? CorrectAnswer { get; set; }
         public List<string> Answers { get; set; } = new List<string>();
     }
+
+    //public class QuizItemV2
+    //{
+    //    public int Id { get; set; } = 0;
+    //    public int NextQuizItemId { get; set; } = 0;
+    //    public List<SyllabaryCharacter> Characters { get; set; }
+    //}
 }
